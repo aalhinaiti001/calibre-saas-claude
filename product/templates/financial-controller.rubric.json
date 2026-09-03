@@ -1,0 +1,107 @@
+{
+  "template": "financial-controller",
+  "version": "1.0",
+  "role_family": "Financial Controller",
+  "intended_seat": "Entity or group controller reporting to the CFO or owner, owning close, reporting, controls and the audit relationship. Mid market, IFRS, Jordan or GCC.",
+  "notes": "Weights sum to 100. Anchors describe evidence, not people. Edit weights and anchors before lock; do not add criteria that touch personality, health, or protected characteristics.",
+  "criteria": [
+    {
+      "key": "ifrs_technical_depth",
+      "name": "IFRS technical depth",
+      "weight": 20,
+      "anchor_1": "Cannot explain the accounting for a common judgment area in the entity's business (revenue recognition, leases, impairment, consolidation) beyond naming the standard. Defers every technical question to the auditor.",
+      "anchor_3": "Explains the treatment and the key judgments for the entity's main areas correctly, cites the standard, and describes at least one position they defended to an auditor with the evidence used.",
+      "anchor_5": "Walks through a contested judgment end to end: the alternatives, why one was chosen, the disclosure consequence, and what changed under a recent standard (IFRS 18 presentation, or a relevant amendment). Has written technical memos that survived audit review.",
+      "evidence_sources": ["interview", "technical case", "work sample: a memo or position paper", "reference: engagement auditor"],
+      "questions": [
+        "Take one accounting judgment from your last role where you and the auditor initially disagreed. What was the position, what evidence settled it, and what did the disclosure look like?",
+        "Our entity has [revenue model / leases / a group structure]. Walk me through the two or three judgments you would review first and why.",
+        "What in IFRS 18 changes how you would present this entity's income statement, and what would you need from the ERP to do it?"
+      ]
+    },
+    {
+      "key": "close_and_consolidation",
+      "name": "Close and consolidation ownership",
+      "weight": 20,
+      "anchor_1": "Has participated in a close but not owned one. Cannot state the close calendar, the critical path, or how late adjustments are controlled.",
+      "anchor_3": "Has owned a monthly and annual close for an entity of comparable complexity, can describe the calendar, the reconciliation controls, and the top three recurring causes of delay and what was done about them.",
+      "anchor_5": "Has owned a multi entity consolidation including intercompany elimination and foreign currency, shortened a close measurably, and can show the before and after calendar. Describes controls over late entries and post close adjustments without prompting.",
+      "evidence_sources": ["interview", "work sample: close calendar or checklist", "reference: CFO or audit manager"],
+      "questions": [
+        "Describe your last year end close: the calendar, where it slipped, and what you changed afterwards.",
+        "How do you control entries booked after the close is signed off?",
+        "If you inherited a close that takes 25 working days, what would you look at in the first month?"
+      ]
+    },
+    {
+      "key": "controls_and_audit",
+      "name": "Internal controls and audit management",
+      "weight": 15,
+      "anchor_1": "Describes the audit as something that happens to the finance team. Cannot name a control they designed or a finding they closed.",
+      "anchor_3": "Has managed an external audit end to end: the request list, the evidence file, the timetable, and closure of findings. Can describe one control they designed and how it is tested.",
+      "anchor_5": "Has taken an audit from qualified or late to clean and on time, can evidence the findings register and closure, and describes the control environment in terms of risk rather than procedure. Has handled a regulator or bank covenant interaction.",
+      "evidence_sources": ["interview", "reference: engagement auditor", "work sample: findings register or audit readiness plan"],
+      "questions": [
+        "Tell me about an audit finding you owned. What caused it, how did you close it, and how did you prove closure?",
+        "Which three controls in a mid market finance function most often fail, in your experience, and how do you detect the failure?",
+        "How do you prepare the audit file so that the auditors start on evidence rather than requests?"
+      ]
+    },
+    {
+      "key": "analysis_and_partnering",
+      "name": "Financial analysis and business partnering",
+      "weight": 15,
+      "anchor_1": "Produces reports but cannot explain what changed or why. Has not presented numbers to a non finance audience.",
+      "anchor_3": "Explains variances in operational terms, has presented monthly results to management, and can give an example where analysis changed a decision.",
+      "anchor_5": "Has built or rebuilt the management reporting pack, is trusted by operating leaders as the person who knows the numbers, and can show a decision (pricing, capex, a contract) that their analysis changed, with the outcome.",
+      "evidence_sources": ["interview", "work sample: a management pack or board paper", "reference: an operating leader"],
+      "questions": [
+        "Give me an example where your analysis changed a decision the business was about to make. What did you show and what happened?",
+        "How do you decide what goes on page one of the monthly pack?",
+        "A margin drops three points in one month. Walk me through how you would find out why before the meeting."
+      ]
+    },
+    {
+      "key": "systems_and_process",
+      "name": "Systems, data and process improvement",
+      "weight": 10,
+      "anchor_1": "Works around the ERP with spreadsheets and cannot describe the chart of accounts or the data flow from source to report.",
+      "anchor_3": "Knows the ERP well enough to specify a change, has automated at least one recurring process, and keeps the chart of accounts disciplined.",
+      "anchor_5": "Has led or been the finance lead on an ERP implementation or a major module change, can describe the data model, and has removed manual steps from the close with measurable effect.",
+      "evidence_sources": ["interview", "reference: IT or implementation partner", "work sample: a process map or specification"],
+      "questions": [
+        "Describe a process you automated or removed from the close. What did it take and what did it save?",
+        "What would you need to know about our ERP before committing to a close calendar?",
+        "Tell me about a reporting requirement the system could not meet and how you solved it."
+      ]
+    },
+    {
+      "key": "team_leadership",
+      "name": "Team leadership",
+      "weight": 10,
+      "anchor_1": "Has not managed people, or describes management only as allocating tasks.",
+      "anchor_3": "Has managed a small finance team through at least one full annual cycle, can describe how work is reviewed and how a weak performer was handled.",
+      "anchor_5": "Has built or rebuilt a team, developed a successor for at least one senior role, and can evidence retention and progression. Describes review discipline that catches errors before they reach the CFO.",
+      "evidence_sources": ["interview", "reference: a former direct report", "reference: former manager"],
+      "questions": [
+        "Tell me about someone you developed who moved up. What did you do, specifically?",
+        "How do you review your team's work so that errors are caught before they reach your manager?",
+        "Describe a time you had to manage an underperformer in the team. What happened?"
+      ]
+    },
+    {
+      "key": "judgment_and_integrity",
+      "name": "Judgment and integrity under pressure",
+      "weight": 10,
+      "anchor_1": "Cannot describe a situation where they were pressured on a number, or describes yielding without escalation.",
+      "anchor_3": "Describes at least one situation where they held a position under pressure from management, escalated appropriately, and documented it.",
+      "anchor_5": "Describes a serious situation (a misstatement request, a covenant breach, a related party issue) handled with escalation, documentation, and a clear account of what they would and would not sign. The reference confirms it.",
+      "evidence_sources": ["interview", "reference: former CFO or audit partner"],
+      "questions": [
+        "Tell me about a time you were asked to book or present something you did not agree with. What did you do?",
+        "Where is the line between an aggressive but acceptable accounting position and one you would refuse to sign?",
+        "Describe a mistake in the numbers that was yours. How was it found and what did you do?"
+      ]
+    }
+  ]
+}

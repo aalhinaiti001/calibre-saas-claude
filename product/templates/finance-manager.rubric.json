@@ -1,0 +1,107 @@
+{
+  "template": "finance-manager",
+  "version": "1.0",
+  "role_family": "Finance Manager",
+  "intended_seat": "Head of the finance function in a mid market or family owned business, reporting to the owner, CEO or a group CFO. Owns accounting, cash, compliance and the audit. Often the first professional finance hire.",
+  "notes": "Weights sum to 100. Anchors describe evidence, not people. Edit weights and anchors before lock; do not add criteria that touch personality, health, or protected characteristics.",
+  "criteria": [
+    {
+      "key": "accounting_and_reporting",
+      "name": "Accounting and reporting under IFRS",
+      "weight": 20,
+      "anchor_1": "Produces a trial balance but cannot map it to a full set of IFRS statements or explain the notes. Relies on the auditor to draft the statements.",
+      "anchor_3": "Has prepared a full IFRS set with notes for an entity of similar size, can explain the main judgments, and has taken the statements through audit with limited adjustments.",
+      "anchor_5": "Prepares audit ready statements with a working file the auditor can follow, explains the entity's judgment areas without prompting, and has handled a first year IFRS adoption or a group reporting package.",
+      "evidence_sources": ["interview", "work sample: a set of statements or notes they prepared", "reference: engagement auditor"],
+      "questions": [
+        "Walk me through the last set of financial statements you prepared: which notes carried judgment and how did you support them?",
+        "What were the auditors' adjustments last year, and which of them should you have caught?",
+        "Our business has [inventory / long term contracts / related parties]. What would you look at first?"
+      ]
+    },
+    {
+      "key": "close_and_cadence",
+      "name": "Month end close and reporting cadence",
+      "weight": 15,
+      "anchor_1": "Reports quarterly or when asked. Cannot describe a close calendar or the reconciliations performed each month.",
+      "anchor_3": "Runs a monthly close to a calendar, reconciles bank, receivables, payables and intercompany every month, and delivers a management report by a fixed working day.",
+      "anchor_5": "Runs a close inside ten working days with a documented checklist, has shortened it in a previous role, and produces a management pack the owner reads and acts on.",
+      "evidence_sources": ["interview", "work sample: close checklist or management pack", "reference: owner or CEO"],
+      "questions": [
+        "What does your month end look like day by day?",
+        "Which reconciliations do you insist on every month, and which have you seen skipped elsewhere with consequences?",
+        "What is in your management pack and what does the owner do with it?"
+      ]
+    },
+    {
+      "key": "cash_and_working_capital",
+      "name": "Cash, working capital and treasury discipline",
+      "weight": 15,
+      "anchor_1": "Cannot produce a cash forecast or explain the drivers of working capital. Treats cash as the bank balance.",
+      "anchor_3": "Maintains a rolling 13 week cash forecast, manages collections and supplier terms actively, and has handled a bank facility or covenant reporting.",
+      "anchor_5": "Has taken a business through a cash squeeze with a forecast the owner trusted, renegotiated terms or facilities, and can show working capital days improving under their watch.",
+      "evidence_sources": ["interview", "work sample: cash forecast", "reference: owner or banker"],
+      "questions": [
+        "Show me how you build a cash forecast. What goes wrong with it most often?",
+        "Tell me about a time cash was tight. What did you do in the first week?",
+        "How did you manage receivables in your last role, and what were the days at the start and end?"
+      ]
+    },
+    {
+      "key": "compliance_and_audit",
+      "name": "Compliance, tax and audit readiness",
+      "weight": 15,
+      "anchor_1": "Files what the accountant tells them to file. Cannot describe the entity's tax and e invoicing obligations or the audit timetable.",
+      "anchor_3": "Owns the compliance calendar (VAT, corporate tax, e invoicing, social insurance as applicable), has managed an audit end to end, and closes findings.",
+      "anchor_5": "Has implemented a regulatory change (e invoicing phase, corporate tax introduction, a new filing regime) on time, has a clean audit history, and can explain the entity's exposure without notes.",
+      "evidence_sources": ["interview", "reference: engagement auditor or tax adviser", "work sample: compliance calendar"],
+      "questions": [
+        "List the filings this business makes in a year and who prepares each one.",
+        "Tell me about a regulatory change you implemented. What did it take and what nearly went wrong?",
+        "What was the last audit finding you received and how did you close it?"
+      ]
+    },
+    {
+      "key": "systems_and_excel",
+      "name": "Systems, data and modelling",
+      "weight": 10,
+      "anchor_1": "Uses the accounting system for entry only and builds reports by hand each month. Spreadsheets have no controls.",
+      "anchor_3": "Configures the accounting system's reporting, builds models with clear structure and checks, and has automated recurring reports.",
+      "anchor_5": "Has selected or implemented an accounting system or ERP module, builds models others can audit, and has removed manual steps from reporting with measurable effect.",
+      "evidence_sources": ["interview", "work sample: a model they built", "practical exercise"],
+      "questions": [
+        "Show me a model you built. How does someone else check it?",
+        "What would you change about our accounting system in the first three months?",
+        "Describe a report you automated. What did it replace?"
+      ]
+    },
+    {
+      "key": "people_and_stakeholders",
+      "name": "People and stakeholder management",
+      "weight": 15,
+      "anchor_1": "Has not managed staff, or cannot describe how an owner or board was kept informed beyond sending reports.",
+      "anchor_3": "Has managed a small team, deals directly with the owner, auditors, bank and tax adviser, and can describe a difficult conversation with each.",
+      "anchor_5": "Is the person the owner calls first on any number, has built a team from one or two people, and has managed a bank, auditor or investor relationship through a difficult period.",
+      "evidence_sources": ["interview", "reference: owner or CEO", "reference: former direct report"],
+      "questions": [
+        "How do you keep an owner informed who does not read finance reports?",
+        "Tell me about a disagreement with an auditor or bank and how it was resolved.",
+        "Describe the team you managed and one person you developed."
+      ]
+    },
+    {
+      "key": "judgment_and_integrity",
+      "name": "Judgment and integrity under pressure",
+      "weight": 10,
+      "anchor_1": "Cannot describe a situation where they were pressured on a number, or describes yielding without escalation.",
+      "anchor_3": "Describes at least one situation where they held a position under pressure from an owner or manager, and documented it.",
+      "anchor_5": "Describes a serious situation (a request to misstate, an undisclosed related party, a personal expense through the business) handled with a clear account of what they would and would not do. The reference confirms it.",
+      "evidence_sources": ["interview", "reference: former owner or auditor"],
+      "questions": [
+        "Tell me about a time you were asked to record something you did not agree with. What did you do?",
+        "In a family owned business, where is the line between the owner's money and the company's, and how do you hold it?",
+        "Describe a mistake in the numbers that was yours. How was it found and what did you do?"
+      ]
+    }
+  ]
+}
