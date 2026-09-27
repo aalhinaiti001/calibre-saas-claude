@@ -6,6 +6,10 @@ Scoping, concept and product fundamentals for Calibre by Daftar, the finance rol
 
 [product/](product/README.md) holds the foundation that is true in every delivery form: the normative method, the domain model and its invariants, the guardrails, two finance role packs, the Verdict memo template, a Postgres schema with row level security and a passing smoke test, and the decision records. Start with [product/METHOD.md](product/METHOD.md).
 
+## Brand
+
+[brand/](brand/README.md) holds the brand canon for the Calibre surface: the Unified Master Brand Playbook & Handbook v2.0-Canon, and the Guided v2 site design as an unshipped source. Calibre only; Daftar Advisory keeps its own handbook. The method files in `product/` outrank the handbook on claims.
+
 ## Concept documents
 
 - [docs/CALIBRE-SAAS-CONCEPT.md](docs/CALIBRE-SAAS-CONCEPT.md): the SaaS concept. Problem statement, core user loop, MVP feature list with cuts and deferrals, recommended stack, build sequence, and kill criteria. Read this before touching a build tool.

@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Calibre by Daftar — Unified Master Brand Playbook & Handbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Canonical Neutral Ground & Panels */
+      --white: #FFFFFF;
+      --paper-100: #F6F7F8;
+      --paper-200: #ECEEF1;
+      
+      /* Canonical Forest Family (Founder Ruling 12 Sept 2026) */
+      --forest-50: #F0F5F3;
+      --forest-100: #D5E3DE;
+      --forest-600: #265147;
+      --forest-700: #1C3D35;
+      --forest-900: #0E211B;
+
+      /* Canonical Ink & Stone Family */
+      --ink-950: #0E1113;
+      --ink-800: #1E2522;
+      --stone-600: #394740;
+      --stone-500: #596B66;
+      --stone-400: #78716C;
+      --stone-200: #E7E5E4;
+      --stone-100: #F5F5F4;
+
+      /* Canonical Secondary Accent (Cool Clay / Slate) */
+      --clay-500: #6A7A82;
+      --clay-600: #536269;
+
+      /* Typography */
+      --serif: "Lora", Georgia, serif;
+      --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --arabic: "IBM Plex Sans Arabic", system-ui, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--ink-950);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      width: min(1080px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* Cover / Hero Header */
+    .hero {
+      background: var(--forest-900);
+      color: #FFFFFF;
+      padding: 64px 0 72px;
+      border-bottom: 4px solid var(--forest-600);
+    }
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      padding-bottom: 24px;
+      margin-bottom: 48px;
+    }
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .tile-c {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #FFFFFF;
+      color: var(--forest-600);
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 1;
+    }
+    .brand-titles em {
+      display: block;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.1;
+      color: #FFFFFF;
+    }
+    .brand-titles small {
+      display: block;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: #A8C9B8;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+    .meta-box {
+      text-align: right;
+      font-size: 12px;
+      color: #C9D8D2;
+      line-height: 1.5;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      line-height: 1.12;
+      margin: 0 0 24px;
+      max-width: 19ch;
+      letter-spacing: -0.025em;
+      color: #FFFFFF;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: #D5E3DE;
+    }
+    .hero .lede {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 19px;
+      line-height: 1.6;
+      color: #D7E6DE;
+      max-width: 66ch;
+      margin: 0 0 32px;
+    }
+    .hero-banner {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      padding-top: 24px;
+    }
+    .hero-banner-item strong {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #A8C9B8;
+      margin-bottom: 6px;
+    }
+    .hero-banner-item p {
+      margin: 0;
+      font-size: 13px;
+      color: #C9D8D2;
+    }
+
+    /* Sticky Navigation */
+    .toc-bar {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--forest-100);
+      z-index: 100;
+      padding: 12px 0;
+    }
+    .toc-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .toc-nav a {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--forest-700);
+      text-decoration: none;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--forest-100);
+      transition: all 0.2s ease;
+    }
+    .toc-nav a:hover {
+      background: var(--forest-50);
+      border-color: var(--forest-600);
+      color: var(--forest-600);
+    }
+
+    /* Structural Layout */
+    main { padding: 32px 0 80px; }
+    section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--forest-100);
+      scroll-margin-top: 60px;
+    }
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 48px;
+    }
+    .section-sidebar {
+      padding-top: 8px;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest-600);
+      margin-bottom: 12px;
+      padding-left: 10px;
+      border-left: 3px solid var(--forest-600);
+    }
+    .section-sidebar p {
+      font-size: 13px;
+      color: var(--stone-500);
+      margin: 8px 0 0;
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(1.8rem, 2.8vw, 2.3rem);
+      line-height: 1.2;
+      margin: 0 0 20px;
+      color: var(--forest-900);
+      letter-spacing: -0.02em;
+    }
+    h2 em { font-style: italic; color: var(--forest-600); }
+    h3 {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--forest-700);
+      margin: 36px 0 12px;
+    }
+    p {
+      color: var(--stone-600);
+      margin: 0 0 16px;
+      max-width: 72ch;
+    }
+    p.lead {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--forest-900);
+      margin-bottom: 24px;
+    }
+    strong { color: var(--forest-900); font-weight: 600; }
+    ul, ol {
+      color: var(--stone-600);
+      padding-left: 20px;
+      margin: 0 0 20px;
+      max-width: 72ch;
+    }
+    li { margin-bottom: 8px; }
+    li::marker { color: var(--forest-600); }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0 32px;
+      font-size: 13.5px;
+    }
+    caption {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--forest-600);
+      padding-bottom: 10px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--forest-100);
+      vertical-align: top;
+      color: var(--stone-600);
+    }
+    thead th {
+      border-bottom: 2px solid var(--forest-600);
+      color: var(--forest-900);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    tbody th {
+      color: var(--forest-700);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    tbody tr:hover td, tbody tr:hover th {
+      background: var(--forest-50);
+    }
+    code {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--forest-700);
+      background: var(--forest-50);
+      border: 1px solid var(--forest-100);
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    /* Cards & Containers */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .card {
+      border: 1px solid var(--forest-100);
+      border-radius: 12px;
+      padding: 24px;
+      background: var(--white);
+    }
+    .card.tint { background: var(--forest-50); }
+    .card h3 { margin-top: 0; }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* Swatches */
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .swatch {
+      border: 1px solid var(--forest-100);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #FFFFFF;
+    }
+    .swatch-color { height: 72px; }
+    .swatch-meta {
+      padding: 10px 12px;
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--stone-500);
+      border-top: 1px solid var(--forest-50);
+    }
+    .swatch-meta b {
+      display: block;
+      font-size: 12.5px;
+      color: var(--forest-900);
+      font-weight: 600;
+    }
+
+    /* Callouts & Notes */
+    .callout {
+      border-left: 4px solid var(--forest-600);
+      background: var(--forest-50);
+      border-radius: 0 10px 10px 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .callout.warn {
+      border-left-color: var(--clay-600);
+      background: var(--paper-100);
+    }
+    .callout.stop {
+      border-left-color: #8C2E2B;
+      background: #FDF4F4;
+    }
+    .callout strong {
+      display: block;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 6px;
+    }
+    .callout.warn strong { color: var(--clay-600); }
+    .callout.stop strong { color: #8C2E2B; }
+    .callout p { margin: 0; color: var(--stone-600); }
+
+    /* Do / Don't Grid */
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--forest-100);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 28px 0;
+    }
+    .do-pane { background: var(--forest-50); padding: 22px; }
+    .dont-pane { background: var(--paper-100); padding: 22px; border-left: 1px solid var(--forest-100); }
+    .do-pane h4 { margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--forest-600); font-weight: 700; }
+    .dont-pane h4 { margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--clay-600); font-weight: 700; }
+    .do-pane ul, .dont-pane ul { margin: 0; padding-left: 18px; font-size: 13.5px; }
+
+    /* Specimen Box */
+    .specimen {
+      background: var(--forest-900);
+      border-radius: 14px;
+      color: #FFFFFF;
+      padding: 36px;
+      margin: 28px 0;
+    }
+    .specimen .eyebrow-light {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #A8C9B8;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .specimen .display-copy {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3.2vw, 34px);
+      line-height: 1.25;
+      color: #FFFFFF;
+      margin: 0 0 14px;
+      max-width: 26ch;
+    }
+    .specimen .display-copy em {
+      font-style: italic;
+      color: #D5E3DE;
+    }
+    .specimen .body-copy {
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      color: #C9D8D2;
+      max-width: 58ch;
+      margin-bottom: 28px;
+    }
+    .specimen .specimen-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      padding-top: 18px;
+    }
+    .specimen-lockup em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      color: #FFFFFF;
+    }
+    .specimen-lockup small {
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #A8C9B8;
+    }
+
+    /* Bilingual & Arabic Styling */
+    .arabic-pane {
+      direction: rtl;
+      text-align: right;
+      font-family: var(--arabic);
+      font-size: 16px;
+      line-height: 1.8;
+      background: var(--forest-50);
+      border: 1px solid var(--forest-100);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+    .arabic-pane strong { font-family: var(--arabic); color: var(--forest-700); }
+
+    /* Checklist Grid */
+    .checklist {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+      list-style: none;
+      padding: 0;
+      margin: 24px 0;
+    }
+    .checklist li {
+      display: flex;
+      gap: 12px;
+      border-top: 1px solid var(--forest-100);
+      padding: 12px 0;
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--forest-900);
+    }
+    .checklist li::before {
+      content: "□";
+      color: var(--forest-600);
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--forest-900);
+      border-top: 4px solid var(--forest-600);
+      color: #C9D8D2;
+      padding: 60px 0 80px;
+    }
+    footer p {
+      font-size: 13px;
+      color: #C9D8D2;
+      margin: 0 0 10px;
+      max-width: 80ch;
+    }
+    footer strong { color: #FFFFFF; }
+    footer hr {
+      border: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      margin: 24px 0;
+    }
+    .use-statement-band {
+      background: rgba(255, 255, 255, 0.08);
+      border-left: 3px solid #A8C9B8;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #FFFFFF;
+      margin-top: 20px;
+    }
+
+    /* Print & Responsive */
+    @media (max-width: 860px) {
+      .grid-2col { grid-template-columns: 1fr; gap: 20px; }
+      .section-sidebar { padding-top: 0; }
+      .hero-banner { grid-template-columns: 1fr; }
+      .do-dont, .checklist, .card-grid { grid-template-columns: 1fr; }
+      .dont-pane { border-left: 0; border-top: 1px solid var(--forest-100); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    @media print {
+      body { background: #FFF; color: #000; font-size: 12pt; }
+      .hero, footer, .toc-bar { background: #FFF !important; color: #000 !important; border: none; }
+      .hero h1, .brand-titles em { color: #000 !important; }
+      .specimen { background: #FFF !important; color: #000 !important; border: 1px solid #CCC; }
+      .callout, .card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="topline">
+      <div class="brand-mark">
+        <div class="tile-c" aria-hidden="true">C</div>
+        <div class="brand-titles">
+          <em>Calibre</em>
+          <small>by Daftar</small>
+        </div>
+      </div>
+      <div class="meta-box">
+        <strong>Unified Master Brand Playbook & Handbook</strong><br>
+        Version 2.0-Canon · Consolidating Handbook v1.0 & Playbook Eds 01–02<br>
+        Published 23 September 2026 · Product of Daftar Advisory
+      </div>
+    </div>
+    <h1>A product brand whose first job is not <em>overclaiming.</em></h1>
+    <p class="lede">The single authoritative standard for the Calibre brand. Governs typography, tokens, prohibited claims, bilingual publishing parity, and client-facing deliverable structures.</p>
+    <div class="hero-banner">
+      <div class="hero-banner-item">
+        <strong>Supreme Operational Authority</strong>
+        <p>This handbook derives its mandate from <code>product/METHOD.md</code> and <code>product/GUARDRAILS.md</code>. Where promotional copy and methodological guardrails conflict, the guardrails outrank copy without exception.</p>
+      </div>
+      <div class="hero-banner-item">
+        <strong>Target Surface</strong>
+        <p>Calibre digital assets (<code>/calibre</code>, <code>/ar/calibre</code>), post-closeout advisory attachments, and the Calibre Verdict memo deliverable.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="toc-bar">
+  <div class="wrap">
+    <nav class="toc-nav" aria-label="Playbook Chapters">
+      <a href="#role">§ 01 Role & Positioning</a>
+      <a href="#identity">§ 02 Brand Seam & Mark</a>
+      <a href="#tokens">§ 03 Tokens & Palette</a>
+      <a href="#claim-gate">§ 04 Zero-Tolerance Claim Gate</a>
+      <a href="#verdict">§ 05 Deliverables & The Verdict</a>
+      <a href="#bilingual">§ 06 Arabic & Access</a>
+      <a href="#surfaces">§ 07 Surface Applications</a>
+      <a href="#governance">§ 08 Release Gate & Decisions</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- SECTION 01 -->
+  <section id="role">
+    <div class="grid-2col">
+      <div class="section-sidebar">
+        <span class="eyebrow">§ 01 · Purpose</span>
+        <p>Positioning boundaries, target market limitations, and the go-to-market progression sequence.</p>
+      </div>
+      <div>
+        <h2>Narrow finance-hiring advisory. <em>Nothing wider.</em></h2>
+        <p class="lead">Calibre evaluates employer-provided finalist shortlists for complex corporate finance roles using independent reading, anchored scorecards, and human calibration. The employer makes and owns the decision.</p>
+
+        <div class="card-grid">
+          <div class="card tint">
+            <h3>What Calibre Is</h3>
+            <ul>
+              <li>An anchored, evidence-based review of finalist candidates for a specific finance mandate.</li>
+              <li>Independent scoring by calibrated reviewers against custom-anchored rubrics.</li>
+              <li>A written executive memo explaining the qualitative evidence, limits, and risks.</li>
+              <li>Commercial structure: One role · two weeks · fixed fee.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>What Calibre Is Not</h3>
+            <ul>
+              <li>Not recruitment, headhunting, or candidate sourcing.</li>
+              <li>Not a psychometric test, personality profile, or cognitive battery.</li>
+              <li>Not a statistical predictor of executive performance or cultural fit.</li>
+              <li>Not an automated, algorithmic, or software-driven sorting engine.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>The Finance-Only Boundary</h3>
+        <p>The evaluation method rests entirely on rigorous finance judgement: close ownership, internal financial controls, capital allocation, statutory accounting, and technical reporting. Applied outside of finance functions, the scorecard rubrics lose objective anchoring. Acknowledging this boundary publicly is the core mechanism of Calibre’s brand authority.</p>
+
+        <h3>Go-To-Market Lifecycle: Attach → Prove → Separate</h3>
+        <table>
+          <caption>Sequential Commercial Model</caption>
+          <thead>
+            <tr><th>Phase</th><th>Execution Rule</th><th>Brand Constraint</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>1. Attach</th>
+              <td>Introduced strictly at the closeout of a completed Daftar Advisory assignment as a value-add attachment.</td>
+              <td>Zero cold outreach; zero standalone outbound marketing. Requires "by Daftar" kicker.</td>
+            </tr>
+            <tr>
+              <th>2. Prove</th>
+              <td>Early client deployments are treated as calibration engagements to benchmark reviewer hours.</td>
+              <td>Scope and fixed-fee commitments are locked; no unsubstantiated performance claims.</td>
+            </tr>
+            <tr>
+              <th>3. Separate</th>
+              <td>Calibre earns standalone outbound channel presence only after establishing a documented track record.</td>
+              <td>Attribution line remains permanently mandatory: "A product of Daftar Advisory · Amman".</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section id="identity">
+    <div class="grid-2col">
+      <div class="section-sidebar">
+        <span class="eyebrow">§ 02 · Identity</span>
+        <p>Visual lockup specs, kicker rules, and absolute seam boundaries against parent branding.</p>
+      </div>
+      <div>
+        <h2>One mark, one kicker, <em>no visual merger.</em></h2>
+        <p>Calibre borrows the authority of Daftar Advisory while maintaining complete visual autonomy. Under no circumstances may Daftar’s visual identity bleed onto a Calibre surface.</p>
+
+        <div class="specimen" aria-label="Calibre Brand Specimen">
+          <div class="eyebrow-light">Official Lockup Treatment</div>
+          <div class="display-copy">Make hiring decisions on<br><em>evidence, not instinct.</em></div>
+          <div class="body-copy">We read your finance shortlist, score it against an anchored standard, and provide one written recommendation detailing the evidence, limits, and operational risks.</div>
+          <div class="specimen-lockup">
+            <div class="tile-c" style="width:36px; height:36px; font-size:20px;">C</div>
+            <em>Calibre</em>
+            <small>by Daftar</small>
+          </div>
+        </div>
+
+        <table>
+          <caption>Identity System Elements</caption>
+          <thead><tr><th>Element</th><th>Specification</th><th>Enforcement Rule</th></tr></thead>
+          <tbody>
+            <tr>
+              <th>Monogram</th>
+              <td>Uppercase <code>C</code> knocked out of a solid Forest 600 tile (radius <code>10px</code>). Set in Lora 600.</td>
+              <td>The favicon is an inline SVG data-URI reproducing this exact tile geometry.</td>
+            </tr>
+            <tr>
+              <th>Wordmark</th>
+              <td>"Calibre" set in Lora italic, weight 400 or 500.</td>
+              <td>Never set in upright serif; never set in sans-serif or all-caps.</td>
+            </tr>
+            <tr>
+              <th>Kicker</th>
+              <td>"by Daftar" set in Plus Jakarta Sans (weight 500–600, sentence case).</td>
+              <td><strong>Mandatory.</strong> Never drop the kicker. Never set the kicker in a serif face.</td>
+            </tr>
+            <tr>
+              <th>Attribution</th>
+              <td>"A product of Daftar Advisory · Amman" placed in footer or metadata block.</td>
+              <td>The Daftar primary mark/logo itself <strong>never appears</strong> on a Calibre artwork.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout warn">
+          <strong>The Seam Between Brands (Zero Bleed Policy)</strong>
+          <p>Daftar runs on warm cream ground (<code>#F4F1EA</code>), rust accents (<code>#A8341F</code>), and monospaced technical labels. Calibre runs on pure white (<code>#FFFFFF</code>), cool paper (<code>#F6F7F8</code>), and forest green (<code>#265147</code>). They never share a ground. When Calibre appears within a Daftar document, it must sit quarantined inside a Forest 900 band or separate cool card. Daftar never receives a cream panel inside a Calibre artwork.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section id="tokens">
+    <div class="grid-2col">
+      <div class="section-sidebar">
+        <span class="eyebrow">§ 03 · Design System</span>
+        <p>Canonical CSS tokens, typography hierarchies, Tailwind configurations, and Lucide icon sets.</p>
+      </div>
+      <div>
+        <h2>Forest is structural, <em>not decorative.</em></h2>
+        <p class="lead">Per Founder Ruling (12 September 2026), the brand green is Forest <code>#265147</code>. Green carries dividers, structural hairlines, table headers, emphasis borders, and badges. Neutral stone is reserved solely for running body text.</p>
+
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FFFFFF; border-bottom:1px solid #E7E5E4"></div>
+            <div class="swatch-meta"><b>White</b><code>#FFFFFF</code><br>Primary Ground</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#F6F7F8"></div>
+            <div class="swatch-meta"><b>Paper 100</b><code>#F6F7F8</code><br>Section Panels</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#ECEEF1"></div>
+            <div class="swatch-meta"><b>Paper 200</b><code>#ECEEF1</code><br>Card Substrates</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#F0F5F3"></div>
+            <div class="swatch-meta"><b>Forest 50</b><code>#F0F5F3</code><br>Tint & Code Fills</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#D5E3DE"></div>
+            <div class="swatch-meta"><b>Forest 100</b><code>#D5E3DE</code><br>Structural Lines</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#265147"></div>
+            <div class="swatch-meta"><b>Forest 600</b><code>#265147</code><br>Structural Accent</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#1C3D35"></div>
+            <div class="swatch-meta"><b>Forest 700</b><code>#1C3D35</code><br>Hover / Emphasis</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#0E211B"></div>
+            <div class="swatch-meta"><b>Forest 900</b><code>#0E211B</code><br>Night Headers/Covers</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#6A7A82"></div>
+            <div class="swatch-meta"><b>Clay 500</b><code>#6A7A82</code><br>Secondary Accent</div>
+          </div>
+        </div>
+
+        <h3>Typography Scale & Implementation</h3>
+        <table>
+          <caption>Approved Font Stack</caption>
+          <thead><tr><th>Role</th><th>Font Family</th><th>Weight Scale</th><th>Usage Constraints</th></tr></thead>
+          <tbody>
+            <tr>
+              <th>Editorial Display</th>
+              <td>Lora</td>
+              <td>400 Regular, 500 Medium, 600 SemiBold</td>
+              <td>H1, H2, hero leads, pull quotes, memo recommendations. Italics used for deliberate emphasis.</td>
+            </tr>
+            <tr>
+              <th>UI & Metadata</th>
+              <td>Plus Jakarta Sans</td>
+              <td>300 Light, 400 Regular, 500 Medium, 600 SemiBold, 700 Bold</td>
+              <td>Body text, tables, navigation, buttons, form inputs, metadata chips. Sentence case only.</td>
+            </tr>
+            <tr>
+              <th>Arabic Mirror</th>
+              <td>IBM Plex Sans Arabic</td>
+              <td>400 Regular, 500 Medium, 600 SemiBold, 700 Bold</td>
+              <td>All Arabic content surfaces (paired with <code>dir="rtl"</code>).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout stop">
+          <strong>Banned Elements & Legacy Tokens</strong>
+          <p>The following tokens and legacy patterns are prohibited:
+          Warm paper <code>#FAF8F5</code>, Warm clay <code>#B25B3C</code>, Charcoal theme <code>#2B3A36</code>, Newsreader, Instrument Sans, IBM Plex Mono (monospaced labels belong exclusively to Daftar Advisory), heavy box shadows, multi-tone color gradients, and dev controls (<code>#tweakPanel</code>).</p>
+        </div>
+
+        <h3>Approved Icon System & Motion Parameters</h3>
+        <ul>
+          <li><strong>Icon Library:</strong> Lucide Icons exclusively. Sized to <code>w-4</code> (16px) or <code>w-5</code> (20px). Always set with <code>aria-hidden="true"</code>.</li>
+          <li><strong>Authorized Set (10):</strong> <code>arrow-right-circle</code>, <code>check</code>, <code>chevron-down</code>, <code>file-text</code>, <code>mail</code>, <code>menu</code>, <code>message-circle</code>, <code>scale</code>, <code>target</code>, <code>users</code>.</li>
+          <li><strong>Motion Physics:</strong> Single scroll reveal using <code>0.7s cubic-bezier(0.16, 1, 0.3, 1)</code> with staggered delays. Interactive card lift is constrained to exactly <code>4px</code> translateY.</li>
+          <li><strong>Accessibility Requirement:</strong> Complete motion suppression under <code>@media (prefers-reduced-motion: reduce)</code> is non-negotiable.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 -->
+  <section id="claim-gate">
+    <div class="grid-2col">
+      <div class="section-sidebar">
+        <span class="eyebrow">§ 04 · Governance</span>
+        <p>The zero-tolerance claim filter. Prohibited vocabulary, risk boundaries, and mandatory legal copy.</p>
+      </div>
+      <div>
+        <h2>The Zero-Tolerance Claim Gate.</h2>
+        <p class="lead">Calibre never promises a ranking, a predictive score, or an automated hiring conclusion. Every sentence must clear this lexicographical filter prior to deployment.</p>
+
+        <table>
+          <caption>Prohibited Lexicon & Mandatory Substitutions</caption>
+          <thead><tr><th>Prohibited Trigger Term</th><th>Substantive Violation</th><th>Mandatory Approved Substitute</th></tr></thead>
+          <tbody>
+            <tr>
+              <th>Rank / Ranked / Ranking / Top / Winner</th>
+              <td>Implies candidates are arranged on an ordinal ladder. Calibre presents finalists exclusively in entry order.</td>
+              <td>"One written recommendation detailing comparative merits and verified risks."</td>
+            </tr>
+            <tr>
+              <th>Fit / Fit Score / Role-Fit / Best Fit</th>
+              <td>Implies psychometric matching or universal benchmarking against an undefined aggregate standard.</td>
+              <td>"Evidence scored against explicit, anchored criteria built for the role."</td>
+            </tr>
+            <tr>
+              <th>Diagnostic</th>
+              <td>Retired commercial terminology suggesting medical or clinical precision.</td>
+              <td>"The Calibre Verdict" or "Hiring decision advisory memo."</td>
+            </tr>
+            <tr>
+              <th>Predict / Predictive / Validity</th>
+              <td>Legal liability trigger. Calibre does not conduct predictive validity tracking.</td>
+              <td>"Structured evaluation of past performance evidence."</td>
+            </tr>
+            <tr>
+              <th>Assessment / Psychometric</th>
+              <td>Mischaracterizes advisory consulting work as a standardized testing platform.</td>
+              <td>"Structured hiring advisory for finance roles."</td>
+            </tr>
+            <tr>
+              <th>Unsourced Stats (e.g. "Δ 41 pts")</th>
+              <td>Unsubstantiated marketing claims undermine product credibility.</td>
+              <td>Traceable client citations or explicit "Illustrative example" labels.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout">
+          <strong>Mandatory 4-Sentence Use Statement</strong>
+          <p>The following statement must be quoted in full on every web footer, proposal document, and executive memo. Truncating the statement voids compliance:</p>
+          <div class="use-statement-band" style="color:var(--forest-900); background:var(--forest-100); border-left-color:var(--forest-600); margin-top:10px;">
+            "Structured hiring advisory for finance roles. Not a psychometric assessment. Does not predict performance. The decision, and its consequences, rest with the employer."
+          </div>
+        </div>
+
+        <div class="do-dont">
+          <div class="do-pane">
+            <h4>Mandatory Claim Phrasing</h4>
+            <ul>
+              <li>"Scored independently against a role-specific standard."</li>
+              <li>"Finalists presented in entry order."</li>
+              <li>"One written recommendation, with the reasons and risks named."</li>
+              <li>"Human calibration across independent reviewers."</li>
+              <li>"Evidence-led evaluation of technical finance competence."</li>
+            </ul>
+          </div>
+          <div class="dont-pane">
+            <h4>Strictly Prohibited Copy</h4>
+            <ul>
+              <li>"Identifies the top-ranked candidate for your team."</li>
+              <li>"Predicts 12-month job performance with high validity."</li>
+              <li>"Delivers an automated candidate fit rating."</li>
+              <li>"Eliminates hiring risk through psychometric diagnostics."</li>
+              <li>"Ranks your shortlist from strongest to weakest."</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 -->
+  <section id="verdict">
+    <div class="grid-2col">
+      <div class="section-sidebar">
+        <span class="eyebrow">§ 05 · Deliverables</span>
+        <p>Operational anatomy of the Calibre Verdict memo and core evaluation mechanics.</p>
+      </div>
+      <div>
+        <h2>The Calibre Verdict Deliverable.</h2>
+        <p class="lead">The primary client output is a single, rigorous, human-written decision memo. It provides structured clarity without stripping final accountability from executive management.</p>
+
+        <h3>Core Deliverable Architecture</h3>
+        <table>
+          <caption>Deliverable Components</caption>
+          <thead><tr><th>Output Asset</th><th>Analytical Function</th><th>Format Standard</th></tr></thead>
+          <tbody>
+            <tr>
+              <th>Role Definition Matrix</th>
+              <td>Explicit documentation of performance expectations, reporting lines, and non-negotiable finance competencies.</td>
+              <td>Tabular breakdown across technical, compliance, and leadership requirements.</td>
+            </tr>
+            <tr>
+              <th>Anchored Scorecard</th>
+              <td>Custom rubric detailing observable evidence benchmarks for scoring candidate submissions.</td>
+              <td>Graded on a 1–5 evidence scale with descriptive behavioral anchors.</td>
+            </tr>
+            <tr>
+              <th>Independent Review Grid</th>
+              <td>Disaggregated candidate ratings from primary readers, scored without mutual consultation.</td>
+              <td>Finalists displayed in <strong>entry order</strong>. Variance highlighted to expose divergence.</td>
+            </tr>
+            <tr>
+              <th>Calibration Notes</th>
+              <td>Documentation of the consensus session where reviewer divergence is analyzed and resolved.</td>
+              <td>Prose narrative explaining why reviewers agreed or disagreed on specific work samples.</td>
+            </tr>
+            <tr>
+              <th>Executive Verdict Memo</th>
+              <td>The core memorandum: synthesizes evidence, highlights operational risks, and delivers the recommendation.</td>
+              <td>Typeset in Lora serif on white ground. Features the full mandatory use statement.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Review Mechanics & The Entry-Order Principle</h3>
+        <ul>
+          <li><strong>Entry Order Standard:</strong> Finalists are listed in the order their dossiers were received. They are never sorted by aggregate score, color-coded green/amber/red, or designated with competitive badges ("Finalist Winner").</li>
+          <li><strong>Mandatory Risk Disclosure:</strong> If a candidate's portfolio reveals thin documentation regarding specific technical competencies (e.g., debt covenants, statutory consolidation), the memo must explicitly name the omission as an unresolved risk. Silence is prohibited.</li>
+          <li><strong>Human Authorship:</strong> Verdict memos are written by a named human author. Generative synthesis, score-driven template autofill, and algorithmic recommendations are strictly barred.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 -->
+  <section id="bilingual">
+    <div class="grid-2col">
+      <div class="section-sidebar">
+        <span class="eyebrow">§ 06 · Arabic Parity</span>
+        <p>Bilingual synchronization, RTL typography rules, grammatical corrections, and access standards.</p>
+      </div>
+      <div>
+        <h2>Bilingual Parity & Accessibility.</h2>
+        <p class="lead">The Arabic surface is not a secondary translation; it is an authoritative mirror. Every English update requires a synchronized, peer-reviewed Arabic deployment.</p>
+
+        <div class="arabic-pane" lang="ar">
+          <strong>معيار التدقيق اللغوي والقانوني الإلزامي:</strong><br>
+          استشارة توظيف منظمة للأدوار المالية. ليس تقييماً سيكومترياً. لا يتنبأ بالأداء الوظيفي. <strong>القرار وتبعاته يبقيان على عاتق صاحب العمل.</strong>
+        </div>
+
+        <div class="callout stop">
+          <strong>Grammatical Correction Checkpoint (The Dual-Verb Mandate)</strong>
+          <p>The previous Arabic footer contained a grammatical error in the liability disclaimer:
+          <br>
+          <span style="text-decoration:line-through;">القرار وتبعاته تبقى على عاتق صاحب العمل</span> (Incorrect feminine singular verb).
+          <br>
+          <strong>Correct Canonical Standard:</strong> <code>القرار وتبعاته يبقيان على عاتق صاحب العمل</code> (Dual subject requires dual verb).
+          This correction is mandatory across all digital and print collateral.</p>
+        </div>
+
+        <h3>Arabic Prohibited Vocabulary Trigger Register</h3>
+        <table>
+          <caption>Arabic Lexicon Filter</caption>
+          <thead><tr><th>Trigger Term (Arabic)</th><th>Phonetic / Meaning</th><th>Remediation Requirement</th></tr></thead>
+          <tbody>
+            <tr>
+              <th>مرتّب / ترتيب</th>
+              <td>Murattab / Tarteeb (Rank / Ranking)</td>
+              <td>Replace with: "عرض المرشحين بحسب تسلسل الورود" (Presented in entry order).</td>
+            </tr>
+            <tr>
+              <th>ملاءمة / درجة الملاءمة</th>
+              <td>Mula'amah (Fit / Fit Score)</td>
+              <td>Replace with: "مطابقة الأدلة لمعايير الدور المحددة" (Evidence alignment).</td>
+            </tr>
+            <tr>
+              <th>الأفضل / أنسب مرشح</th>
+              <td>Al-Afdal / Ansab Murashah (Winner)</td>
+              <td>Replace with: "توصية خطية مدعومة بالأدلة والمخاطر" (Evidence-based recommendation).</td>
+            </tr>
+            <tr>
+              <th>تشخيص / تشخيصي</th>
+              <td>Tashkhees (Diagnostic)</td>
+              <td>Replace with: "قرار كاليبر" (The Calibre Verdict).</td>
+            </tr>
+            <tr>
+              <th>يتنبّأ / صلاحية تنبؤية</th>
+              <td>Yatanabba' (Predictive Validity)</td>
+              <td>Prohibited. Calibre evaluates verifiable past work output only.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Accessibility & Contrast Benchmarks</h3>
+        <ul>
+          <li><strong>Color Contrast:</strong> Body copy against ground must exceed WCAG AAA standards (7.0:1). Forest 600 (<code>#265147</code>) on White achieves 8.9:1; Ink 950 (<code>#0E1113</code>) achieves 18.9:1; Stone 600 (<code>#394740</code>) body text achieves 9.7:1. Stone 500 (<code>#596B66</code>) achieves 5.6:1, which is AA only, so it is restricted to secondary text and must not carry body copy.</li>
+          <li><strong>Screen Reader Optimization:</strong> All decorative elements (monogram tile, structural dividers, icons) must carry <code>aria-hidden="true"</code>. Informative diagrams require explicit semantic markup.</li>
+          <li><strong>Keyboard Navigation:</strong> All interactive elements must maintain a visible focus ring using <code>outline: 2px solid var(--forest-600)</code> with a 2px offset.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 07 -->
+  <section id="surfaces">
+    <div class="grid-2col">
+      <div class="section-sidebar">
+        <span class="eyebrow">§ 07 · Applications</span>
+        <p>Implementation specifications across web, advisory attachments, social collateral, and executive decks.</p>
+      </div>
+      <div>
+        <h2>Surface Application Standards.</h2>
+        <p class="lead">Calibre assets must adapt to their operational medium without compromising core brand isolation or claim governance.</p>
+
+        <table>
+          <caption>Application Execution Matrix</caption>
+          <thead><tr><th>Surface Medium</th><th>Mandatory Design Tokens</th><th>Release Condition</th></tr></thead>
+          <tbody>
+            <tr>
+              <th>One-Page Advisory Attachment</th>
+              <td>White ground (<code>#FFFFFF</code>), Forest structural band, Lora serif headline, Plus Jakarta Sans kicker.</td>
+              <td>Delivered strictly at the closeout of a Daftar engagement. Must contain the full 4-sentence use statement.</td>
+            </tr>
+            <tr>
+              <th>Product Landing Page</th>
+              <td>Static HTML (<code>/calibre</code>, <code>/ar/calibre</code>), pure CSS custom properties, Lucide icons, no Play CDN.</td>
+              <td>Bilingual claim synchronization; <code>data-theme="ink"</code> removed; reduced-motion CSS active.</td>
+            </tr>
+            <tr>
+              <th>The Verdict Memo (PDF/Print)</th>
+              <td>A4/US Letter portrait, 24mm margins, Lora body copy, tabular scorecard matrices in Forest 50 fills.</td>
+              <td>Finalists ordered by entry; risk disclosures fully populated; author signature authenticated.</td>
+            </tr>
+            <tr>
+              <th>Executive Slide Collateral</th>
+              <td>16:9 widescreen, White or Paper 100 ground. Forest 900 headers. No decorative shapes or gradients.</td>
+              <td>All case metrics accompanied by an "Illustrative example" badge or documented data source citation.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 08 -->
+  <section id="governance">
+    <div class="grid-2col">
+      <div class="section-sidebar">
+        <span class="eyebrow">§ 08 · Governance</span>
+        <p>Pre-publish quality verification gates and the official register of quarantined operational decisions.</p>
+      </div>
+      <div>
+        <h2>Production Release Gate & Decision Log.</h2>
+        <p class="lead">Prior to pushing code to production or delivering collateral to a client, all ten verification gates must be certified by the brand custodian.</p>
+
+        <ul class="checklist">
+          <li><strong>Attribution Seam:</strong> "by Daftar" kicker is present in sans-serif; Daftar mark and cream/rust palette are absent.</li>
+          <li><strong>Color System Integrity:</strong> Ground is pure White (<code>#FFFFFF</code>); structural accents use Forest 600 (<code>#265147</code>); no charcoal theme overrides.</li>
+          <li><strong>Typographic Stack:</strong> Lora and Plus Jakarta Sans active; zero monospaced styles or legacy type imports.</li>
+          <li><strong>Zero-Tolerance Claim Pass:</strong> Content audited for banned vocabulary (rank, fit, diagnostic, predict).</li>
+          <li><strong>Mandatory Use Statement:</strong> Full 4-sentence statement included verbatim without omissions.</li>
+          <li><strong>Data Citation:</strong> Every numeric performance claim has a verified source or is clearly tagged "Illustrative".</li>
+          <li><strong>Bilingual Parity:</strong> English and Arabic surfaces synchronized; dual-verb fix verified in Arabic.</li>
+          <li><strong>Technical Hygiene:</strong> <code>#tweakPanel</code> stripped; Tailwind compiled locally; reduced-motion CSS intact.</li>
+          <li><strong>Data Privacy:</strong> Candidate names, client identifiers, and confidential finance metrics fully sanitized.</li>
+          <li><strong>Operational Alignment:</strong> Scope strictly conforms to "One role · two weeks · fixed fee".</li>
+        </ul>
+
+        <h3>Official Governance Decisions Register</h3>
+        <table>
+          <caption>Quarantined Items & Operating Directives</caption>
+          <thead><tr><th>Item ID</th><th>Operational Subject</th><th>Status & Governance Ruling</th></tr></thead>
+          <tbody>
+            <tr>
+              <th>DEC-2026-01</th>
+              <td>Official Inbound Contact Email</td>
+              <td>
+                <strong>Quarantined / Operational Directive:</strong> Live deployment uses <code>ahmad@daftaradvisory.com</code> across both language paths. Transition to house spec (<code>hello@calibre.daftaradvisory.com</code>) is suspended until Google Workspace MX routing and operational inbox monitoring are authenticated.
+              </td>
+            </tr>
+            <tr>
+              <th>DEC-2026-02</th>
+              <td>Commercial Tiering (Solo Reviewer)</td>
+              <td>
+                <strong>Rejected / Prohibited from Collateral:</strong> Canonical scope remains exclusively the full panel: "One role · two weeks · fixed fee". "Solo Reviewer" tiers dilute inter-rater reliability and remain quarantined pending formal product governance review.
+              </td>
+            </tr>
+            <tr>
+              <th>DEC-2026-03</th>
+              <td>Primary Repository Integration</td>
+              <td>
+                <strong>Partly resolved (27 September 2026):</strong> This handbook now lives in <code>calibre-saas-claude/brand/</code> beside <a href="../product/METHOD.md"><code>product/METHOD.md</code></a>, <a href="../product/GUARDRAILS.md"><code>product/GUARDRAILS.md</code></a>, and <a href="../product/DECISIONS.md"><code>product/DECISIONS.md</code></a>, so the links resolve. The automated CI/CD guardrail check is still to be built.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Calibre by Daftar</strong> · A product of Daftar Advisory · Amman</p>
+    <p>Unified Master Brand Playbook & Handbook (Version 2.0-Canon). Supersedes Handbook v1.0 and Playbooks Eds 01–02. This document is authoritative for all Calibre surfaces.</p>
+    <hr>
+    <div class="use-statement-band">
+      Structured hiring advisory for finance roles. Not a psychometric assessment. Does not predict performance. The decision, and its consequences, rest with the employer.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
