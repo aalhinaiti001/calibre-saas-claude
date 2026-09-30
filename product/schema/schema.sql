@@ -86,7 +86,7 @@ create table rubric_versions (
 create table criteria (
   id                  uuid primary key default gen_random_uuid(),
   rubric_version_id   uuid not null references rubric_versions(id) on delete cascade,
-  position            integer not null check (position between 1 and 7),
+  position            integer not null check (position between 1 and 9),
   key                 text not null,
   name                text not null,
   weight              integer not null check (weight between 1 and 100),
@@ -99,10 +99,10 @@ create table criteria (
   unique (rubric_version_id, key)
 );
 
--- Weights must sum to 100 and count must be 4..7 for the version to be lockable.
+-- Weights must sum to 100 and count must be 4..9 for the version to be lockable.
 create or replace function rubric_version_is_valid(rv uuid) returns boolean
 language sql stable as $$
-  select count(*) between 4 and 7 and coalesce(sum(weight), 0) = 100 from criteria where rubric_version_id = rv
+  select count(*) between 4 and 9 and coalesce(sum(weight), 0) = 100 from criteria where rubric_version_id = rv
 $$;
 
 -- ---------------------------------------------------------------------------
@@ -253,7 +253,7 @@ begin
   end if;
   select id into rv from rubric_versions where role_id = r.id and version = r.current_rubric_version;
   if not rubric_version_is_valid(rv) then
-    raise exception 'rubric weights must sum to 100 across 4 to 7 criteria';
+    raise exception 'rubric weights must sum to 100 across 4 to 9 criteria';
   end if;
   select finalist_id into top from (
     select f.id as finalist_id, weighted_result(r.id, f.id) as res
@@ -339,7 +339,7 @@ begin
   end if;
   select id into rv from rubric_versions where role_id = p_role and version = 1;
   if rv is null or not rubric_version_is_valid(rv) then
-    raise exception 'rubric version 1 must exist with 4 to 7 criteria whose weights sum to 100';
+    raise exception 'rubric version 1 must exist with 4 to 9 criteria whose weights sum to 100';
   end if;
   update roles set state = 'locked', locked_at = now(), current_rubric_version = 1 where id = p_role;
   insert into audit_events (organisation_id, actor_member_id, role_id, event) values (r.organisation_id, current_member_id(r.organisation_id), p_role, 'role.locked');

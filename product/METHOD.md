@@ -14,7 +14,7 @@ One Verdict covers one role, one panel, one locked rubric, and a shortlist of tw
 |---|---|
 | Finalists | Minimum 2, maximum 6 |
 | Panelists | Minimum 2, maximum 5. One is the hiring lead. |
-| Criteria | Minimum 4, maximum 7 |
+| Criteria | Minimum 4, maximum 9 |
 | Weights | Integers, sum to exactly 100 |
 
 ---

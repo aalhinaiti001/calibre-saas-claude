@@ -1,0 +1,6 @@
+{
+  "name": "calibre-kit-build",
+  "private": true,
+  "description": "Builds the Calibre service kit documents in kit/. Run: npm install && node build_docs.js",
+  "dependencies": { "docx": "9.8.1" }
+}

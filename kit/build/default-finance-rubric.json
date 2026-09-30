@@ -1,0 +1,86 @@
+{
+  "source": "Calibre_Verdict_Working_File.xlsx (kit v1.0), sheet 01 Locked rubric",
+  "criteria": [
+    {
+      "ref": "C1",
+      "name": "Technical accounting and IFRS application",
+      "must": "Must",
+      "weight": 15,
+      "anchor_1": "No evidence of applying a standard beyond routine bookkeeping; cannot name the standards governing the entity's material balances.",
+      "anchor_3": "Has applied the standards material to this entity (e.g. revenue, leases, impairment) in a prior role and can explain one judgement they made and why.",
+      "anchor_5": "Has owned a contested technical judgement end to end - position paper, auditor challenge, resolution - and can walk through the alternative treatment they rejected."
+    },
+    {
+      "ref": "C2",
+      "name": "Financial reporting and close ownership",
+      "must": "Must",
+      "weight": 15,
+      "anchor_1": "Has contributed to a close but never owned a timetable or a deliverable date.",
+      "anchor_3": "Has owned a monthly or quarterly close of comparable size and complexity, including the reconciliations and the reporting pack.",
+      "anchor_5": "Has owned close end to end and materially improved it - days reduced, adjustments cut, or a first-time consolidation delivered - with numbers they can state."
+    },
+    {
+      "ref": "C3",
+      "name": "Controls, compliance and audit readiness",
+      "must": "Must",
+      "weight": 12,
+      "anchor_1": "Treats controls as an audit request; no evidence of designing or operating one.",
+      "anchor_3": "Has run an audit as the entity-side owner: PBC list, sample support, auditor queries closed within the timetable.",
+      "anchor_5": "Has designed or remediated a control that failed, and can describe the failure, the fix, and how they evidenced the fix to the auditor."
+    },
+    {
+      "ref": "C4",
+      "name": "Planning, budgeting and forecasting",
+      "must": "Must",
+      "weight": 12,
+      "anchor_1": "Has populated a budget template but not built the model or owned the assumptions.",
+      "anchor_3": "Has built and maintained a budget or rolling forecast for the entity, and can explain the two or three assumptions that actually drive it.",
+      "anchor_5": "Has run a forecast through a decision that mattered - a cut, a raise, a covenant - and can state where the forecast was wrong and what they changed as a result."
+    },
+    {
+      "ref": "C5",
+      "name": "Cash, treasury and working capital",
+      "must": "Preferred",
+      "weight": 8,
+      "anchor_1": "No ownership of a cash position or a payment cycle.",
+      "anchor_3": "Has owned a cash forecast and a payment run, and understands the entity's working-capital cycle.",
+      "anchor_5": "Has managed a genuine liquidity constraint - covenant, facility, or collection crisis - and can describe the trade-offs they made."
+    },
+    {
+      "ref": "C6",
+      "name": "Systems, data and reporting tooling",
+      "must": "Must",
+      "weight": 10,
+      "anchor_1": "Works only inside a single ERP screen; spreadsheets are manual and unstructured.",
+      "anchor_3": "Is fluent in the entity's ERP class and can build the reporting that sits on top of it without help.",
+      "anchor_5": "Has led or materially supported an implementation, migration, or reporting rebuild, and can describe what broke and how they handled it."
+    },
+    {
+      "ref": "C7",
+      "name": "Team leadership and delegation",
+      "must": "Preferred",
+      "weight": 10,
+      "anchor_1": "Individual contributor only; no evidence of supervising or reviewing others' work.",
+      "anchor_3": "Has supervised a team of comparable size, including review of their work and management of the close timetable across them.",
+      "anchor_5": "Has hired, developed, or performance-managed finance staff, and can describe a specific person whose capability they measurably changed."
+    },
+    {
+      "ref": "C8",
+      "name": "Stakeholder communication and reporting",
+      "must": "Must",
+      "weight": 10,
+      "anchor_1": "Communicates in ledger terms; cannot explain a number to a non-finance audience.",
+      "anchor_3": "Presents regularly to management or the board and can translate a variance into a business cause without prompting.",
+      "anchor_5": "Has held a position under real challenge - from a board, an auditor, a lender, or a regulator - and can describe how they evidenced it."
+    },
+    {
+      "ref": "C9",
+      "name": "Jurisdictional and regulatory exposure",
+      "must": "Preferred",
+      "weight": 8,
+      "anchor_1": "No exposure to the entity's tax or regulatory regime.",
+      "anchor_3": "Has operated under the entity's regime (e.g. UAE corporate tax, VAT, ZATCA, free-zone rules) and knows the filing calendar that applies.",
+      "anchor_5": "Has taken the entity or a comparable one through a first filing, an assessment, or a regime change, and can describe the position taken."
+    }
+  ]
+}

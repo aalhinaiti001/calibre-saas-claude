@@ -34,6 +34,22 @@ exception when others then if sqlerrm like 'FAIL%' then raise; end if; raise not
 update criteria set weight = 20 where key in ('a','b'); update criteria set weight = 30 where key = 'c';
 insert into criteria (rubric_version_id, position, key, name, weight, anchor_1, anchor_3, anchor_5) values ('eeeeeeee-0000-0000-0000-000000000001',4,'d','D',30,'1','3','5');
 select lock_role('cccccccc-0000-0000-0000-000000000001');
+-- upper bound: 9 criteria (the kit's default finance rubric, 15+15+12+12+8+10+10+10+8) is valid; a 10th is refused
+insert into roles (id, organisation_id, title, created_by, brief_seat, brief_outcomes, brief_context, brief_non_negotiables, scoring_deadline)
+ values ('cccccccc-0000-0000-0000-000000000009','aaaaaaaa-0000-0000-0000-000000000001','Finance Manager','bbbbbbbb-0000-0000-0000-000000000002','seat','outcomes','context','CPA', now() + interval '7 days');
+insert into rubric_versions (id, role_id, version, created_by) values ('eeeeeeee-0000-0000-0000-000000000009','cccccccc-0000-0000-0000-000000000009',1,'bbbbbbbb-0000-0000-0000-000000000002');
+insert into criteria (rubric_version_id, position, key, name, weight, anchor_1, anchor_3, anchor_5)
+ select 'eeeeeeee-0000-0000-0000-000000000009', p, 'c'||p, 'C'||p, w, '1','3','5'
+ from unnest(array[15,15,12,12,8,10,10,10,8]) with ordinality as t(w, p);
+do $$ begin
+  if not rubric_version_is_valid('eeeeeeee-0000-0000-0000-000000000009') then raise exception 'FAIL: 9 criteria summing to 100 rejected'; end if;
+  raise notice 'ok: 9 criteria accepted';
+end $$;
+do $$ begin
+  insert into criteria (rubric_version_id, position, key, name, weight, anchor_1, anchor_3, anchor_5) values ('eeeeeeee-0000-0000-0000-000000000009',10,'c10','C10',1,'1','3','5');
+  raise exception 'FAIL: 10th criterion accepted';
+exception when others then if sqlerrm like 'FAIL%' then raise; end if; raise notice 'ok: 10th criterion refused'; end $$;
+select lock_role('cccccccc-0000-0000-0000-000000000009');
 insert into finalists (id, role_id, ref, initials, full_name, contact) values
  ('ffffffff-0000-0000-0000-000000000001','cccccccc-0000-0000-0000-000000000001','F1','AB','Alice B','alice@x'),
  ('ffffffff-0000-0000-0000-000000000002','cccccccc-0000-0000-0000-000000000001','F2','CD','Carl D','carl@x');
@@ -41,7 +57,7 @@ insert into finalists (id, role_id, ref, initials, full_name, contact) values
 insert into scores (role_id, rubric_version_id, panel_seat_id, finalist_id, criterion_id, value, evidence_note)
  select 'cccccccc-0000-0000-0000-000000000001','eeeeeeee-0000-0000-0000-000000000001','dddddddd-0000-0000-0000-000000000001', f.id, c.id,
         case when f.ref='F1' then 4 else 2 end, 'Interview: described the FY24 close and the elimination entries in detail without prompting.'
- from finalists f cross join criteria c where f.role_id='cccccccc-0000-0000-0000-000000000001';
+ from finalists f cross join criteria c where f.role_id='cccccccc-0000-0000-0000-000000000001' and c.rubric_version_id='eeeeeeee-0000-0000-0000-000000000001';
 -- immutability
 do $$ declare n int; begin update scores set value = 5 where panel_seat_id='dddddddd-0000-0000-0000-000000000001'; get diagnostics n = row_count; if n > 0 then raise exception 'FAIL: score edited (% rows)', n; end if; raise notice 'ok: score edit blocked by RLS (0 rows)';
 exception when others then if sqlerrm like 'FAIL%' then raise; end if; raise notice 'ok: score edit refused by trigger'; end $$;
@@ -54,7 +70,7 @@ exception when others then if sqlerrm like 'FAIL%' then raise; end if; raise not
 insert into scores (role_id, rubric_version_id, panel_seat_id, finalist_id, criterion_id, value, evidence_note)
  select 'cccccccc-0000-0000-0000-000000000001','eeeeeeee-0000-0000-0000-000000000001','dddddddd-0000-0000-0000-000000000002', f.id, c.id,
         case when f.ref='F1' and c.key='a' then 1 when f.ref='F1' then 4 else 3 end, 'CV and interview: the consolidation example was thin and the candidate could not name the standard applied.'
- from finalists f cross join criteria c where f.role_id='cccccccc-0000-0000-0000-000000000001';
+ from finalists f cross join criteria c where f.role_id='cccccccc-0000-0000-0000-000000000001' and c.rubric_version_id='eeeeeeee-0000-0000-0000-000000000001';
 select reveal_role('cccccccc-0000-0000-0000-000000000001');
 do $$ declare n int; begin select count(*) into n from scores; if n <> 16 then raise exception 'FAIL: expected 16 visible scores after reveal, got %', n; end if; raise notice 'ok: all 16 scores visible after reveal'; end $$;
 -- divergence on F1/a: lead 4, panelist 1 -> spread 3
