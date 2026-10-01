@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const {
   Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, Footer, PageNumber,
-  AlignmentType, BorderStyle, ShadingType, WidthType, HeadingLevel, LevelFormat,
+  AlignmentType, BorderStyle, ShadingType, WidthType, HeadingLevel, LevelFormat, LineRuleType,
 } = require("docx");
 
 const OUT = process.argv[2] || path.join(__dirname, "..");
@@ -32,7 +32,7 @@ const run = (text, o = {}) => new TextRun({ text, font: o.font || SANS, size: o.
 
 const para = (children, o = {}) => new Paragraph({
   children: Array.isArray(children) ? children : [typeof children === "string" ? run(children, o) : children],
-  spacing: { before: o.before ?? 0, after: o.after ?? 120, line: o.line ?? 300 },
+  spacing: { before: o.before ?? 0, after: o.after ?? 120, line: o.line ?? 300, lineRule: LineRuleType.AUTO },
   alignment: o.align, border: o.border, shading: o.shading, indent: o.indent, keepNext: o.keepNext,
   heading: o.heading, numbering: o.numbering,
 });
@@ -312,9 +312,9 @@ const memo = () => build("Calibre_Verdict_Memo_Template.docx", "Verdict memo tem
 
   ...section("05", "Where the panel diverged"),
   body("Every cell with a spread of two points or more, the evidence on each side, and how the panel resolved it. A spread of 2 is a divergence. A spread of 3 or 4 is a contradiction, and each one is named in the prose below."),
-  ...table(["Finalist", "Criterion", "Scores", "Spread", "Evidence on each side", "Calibrated", "Reason recorded"],
+  ...table(["Finalist", "Criterion", "Scores", "Spread", "Evidence on each side", "Agreed", "Reason recorded"],
     [["[K_]", "[C_]", "[e.g. 2, 4, 4]", "[2]", "[Evidence notes, side by side]", "[3]", "[The evidence that settled it]"]],
-    [900, 900, 1200, 800, 2484, 1100, 1800], { keyCol: true }),
+    [1000, 1250, 1050, 940, 2044, 1000, 1900], { keyCol: true }),
   para([run("Contradictions.  ", { bold: true, color: C.forest700 }), ph("[Name each spread of 3 or 4: whether the disagreement was about the evidence, the meaning of the criterion, or its weighting, and how it was resolved.]")]),
   para([run("Unresolved.  ", { bold: true, color: C.forest700 }), ph("[Any flagged cell the panel could not resolve. It takes the panel mean and is carried into section 07 as a risk.]")]),
 
@@ -361,4 +361,163 @@ const memo = () => build("Calibre_Verdict_Memo_Template.docx", "Verdict memo tem
   body(USE_STATEMENT),
 ]);
 
-Promise.all([rateCard(), intake(), memo()]).catch((e) => { console.error(e); process.exit(1); });
+// ================================================================ 4. Service definition
+const serviceDefinition = () => build("Calibre_Service_Definition.docx", "Service definition", [
+  wordmark(), eyebrow("Service definition"),
+  title("One role, one panel, one written Verdict"),
+  lede("The Calibre Verdict is a bounded, evidence-led service for a defined finance-role shortlist. It creates a common standard, preserves independent judgment, makes disagreement visible, and ends with a human-written advisory memo."),
+  ...section("01", "Service boundary"),
+  ...kv([["Role", "One finance role"], ["Finalists", "Two to six. Four are included in the fee; a fifth or sixth is quoted before start."],
+    ["Panel", "Two to five decision-makers, one of them the hiring lead"], ["Criteria", "Four to nine, weighted to 100"],
+    ["Fee", "USD 5,500 fixed. 50% on criteria lock, 50% on delivery of the written Verdict."],
+    ["Output", "One written Calibre Verdict"], ["Decision owner", "The employer"]]),
+  sub("Included"),
+  ...bullets([
+    "A role brief covering the seat, three to five first-year outcomes, what makes the hire hard, and verifiable job-related non-negotiables.",
+    "A locked rubric with criterion weights, anchors at 1, 3 and 5, permitted evidence sources and structured questions.",
+    "Independent panel scoring before reveal, with a written evidence note behind every score.",
+    "A divergence review and mandatory calibration of every flagged finalist-criterion cell.",
+    "A final memo containing the pre-calibration record, calibrated results, risks, uncertainties, the recommendation and the outcome plan.",
+    "Outcome checks at 90, 180 and 365 days.",
+  ]),
+  sub("Excluded"),
+  ...bullets([
+    "Candidate sourcing, scheduling, reference checks, offer negotiation and applicant tracking.",
+    "Psychometric, personality, work-style, culture or fit assessment.",
+    "Automated scoring, ranking, labels, hidden sorting, or a model-generated recommendation.",
+    "The hiring decision itself.",
+  ]),
+  ...section("02", "Method"),
+  ...table(["Step", "Panel action", "Control"], [
+    ["Read", "Agree the role brief and rubric.", "Lock before any finalist is scored."],
+    ["Score", "Each panelist scores every finalist independently.", "Scores are blind and immutable after submission."],
+    ["Compare", "Review the score spread, the evidence and the disagreement.", "No totals are shown before calibration."],
+    ["Calibrate", "Discuss every flagged cell and record the resolution.", "Pre-calibration scores remain in the record."],
+    ["Verdict", "Review the written advice and the named risks.", "Weighted results are advisory and shown in entry order."],
+  ], [1500, 3900, 3784], { keyCol: true }),
+  ...section("03", "Data and candidate safeguards"),
+  ...bullets([
+    "Record that each candidate received the notice before their information is used.",
+    "Record reasonable adjustments without recording their reason in the rubric, scores or memo.",
+    "Collect only job-related evidence, and use candidate references in working views.",
+    "Purge personal data 90 days after the memo is issued, unless the engagement letter sets another lawful schedule.",
+    "After purge, keep only initials or non-identifying references with the outcome data.",
+    "Make no performance-prediction, legal-compliance, bias-elimination or scientific-validity claim.",
+  ]),
+  ...section("04", "Delivery sequence"),
+  ...table(["Milestone", "Required output", "Gate"], [
+    ["Intake", "Role brief and draft rubric", "Outcomes and evidence sources are clear."],
+    ["Lock", "Signed rubric version", "Weights total 100; four to nine criteria; anchors complete."],
+    ["Panel scoring", "Independent score records", "Every score has an evidence note; 0 means no evidence."],
+    ["Reveal", "Divergence view", "All panelists submitted, or the scoring deadline has passed."],
+    ["Calibration", "Resolution log", "Every flagged cell discussed."],
+    ["Issue and follow-up", "Verdict memo and outcome register", "Use statement present; 90, 180 and 365-day checks scheduled."],
+  ], [1900, 3000, 4284], { keyCol: true }),
+  ...section("05", "Commercial discipline"),
+  ...kv([
+    ["Offer", "Sell one complete Verdict. Calibration is not an optional add-on."],
+    ["Commercial terms", "USD 5,500 fixed; 50% on criteria lock, 50% on delivery. Currency and confidentiality terms are confirmed in the signed engagement letter."],
+    ["Scope change", "Additional finalists, a second role, or a rubric change after lock is a written variation."],
+    ["Claims", "Do not promise that disagreement will be resolved, that bias is eliminated, or that the method predicts performance."],
+    ["Decision", "Name the human recommendation owner, and repeat that the employer decides."],
+    ["Evidence", "Do not cite a number without its source and its limits."],
+    ["Product boundary", "No app, portal, ranking feature or model-generated recommendation is required to deliver the service."],
+  ]),
+  ...callout("The promise", ["Calibre promises a disciplined record of where the panel agrees, where it differs, what evidence bears on the difference, what remains uncertain, and who owns the final decision."]),
+  ...useStatement(),
+]);
+
+// ================================================================ 5. Panel scoring guide
+const scoringGuide = () => build("Calibre_Panel_Scoring_Guide.docx", "Panel scoring guide", [
+  wordmark(), eyebrow("Panel scoring guide"),
+  title("Independent scoring before reveal"),
+  lede("Every panelist scores every finalist against the same locked rubric. Scores stay hidden until every panelist has submitted, or the scoring deadline has passed."),
+  ...section("01", "Scoring rules"),
+  ...table(["Score", "Meaning", "Required record"], [
+    ["0", "No usable evidence", "Name the missing evidence and what would resolve it."],
+    ["1", "Falls materially short of the anchor", "Cite the job-related evidence."],
+    ["2", "Between anchors 1 and 3", "Explain why the evidence does not reach 3."],
+    ["3", "Meets the role requirement", "Cite the evidence that satisfies the anchor."],
+    ["4", "Between anchors 3 and 5", "Explain the additional relevant evidence."],
+    ["5", "Exceeds the role requirement", "Cite the evidence that satisfies anchor 5."],
+  ], [900, 3400, 4884], { keyCol: true }),
+  ...section("02", "Evidence notes"),
+  ...bullets([
+    "Write at least 40 characters for every score, including 0.",
+    "Name the evidence source and its date where available.",
+    "Separate a demonstrated weakness from missing evidence.",
+    "Do not infer protected characteristics, personality, culture fit or future performance.",
+    "Do not discuss scores with other panelists before submission.",
+    "After submission the record is immutable. Corrections are appended with a reason.",
+  ]),
+  ...callout("Good evidence note", ["C2, score 3. Owned the monthly close for a five-entity group, stated in the CV and supported by the panel interview note dated [date]. The evidence supports the anchor but does not establish listed-group reporting."]),
+  ...callout("Insufficient evidence note", ["Good communicator and seems like a strong fit."], { rule: C.stone500, fill: C.paper100 }),
+  ...section("03", "Panelist submission"),
+  ...kv([["Panelist name", blank], ["Finalist reference", blank], ["Rubric version", blank], ["Submitted at", blank],
+    ["All criteria scored", "Yes / No"], ["Every score has an evidence note", "Yes / No"], ["Scored independently", "Yes / No"], ["Signature", blank]], 3600),
+  ...section("04", "Before reveal"),
+  ...bullets([
+    "The Calibre lead confirms every required panelist has submitted, or that the scoring deadline has passed.",
+    "No weighted total, comparison or other panelist's score is shown before reveal.",
+    "Late evidence is logged and applied consistently to every affected panelist.",
+    "The comparison stays in finalist reference order and is never colour-coded as an order of merit.",
+  ]),
+  note("Scores are entered on sheet 02 of the Calibre Verdict working file only after reveal."),
+  ...useStatement(),
+]);
+
+// ================================================================ 6. Calibration record
+const calibrationRecord = () => build("Calibre_Calibration_Record.docx", "Calibration record", [
+  wordmark(), eyebrow("Calibration record"),
+  title("Resolve the differences, keep the original record"),
+  lede("Calibration is required. The panel discusses every flagged finalist-criterion cell, records what caused the difference, and keeps both the pre-calibration scores and the final result."),
+  ...section("01", "Session record"),
+  ...kv([["Client and role", blank], ["Rubric version", blank], ["Session date", blank], ["Facilitator", blank], ["Panelists present", blank], ["Evidence cut-off", blank]]),
+  ...section("02", "Flagged cells"),
+  body("A spread of 2 is a divergence. A spread of 3 or 4 is a contradiction, and each one is named in the Verdict. The flagged cells are listed on sheet 03 of the working file."),
+  body("Cause, circle one: E different evidence, A different reading of the anchor, W weighting, M missing evidence. Where more cells are flagged, continue on sheet 04 of the working file."),
+  ...table(["#", "Finalist", "Criterion", "Scores", "Spread", "Cause", "Evidence discussed", "Resolution"],
+    Array.from({ length: 8 }, (_, i) => [String(i + 1), "", "", "", "", "E  A  W  M", "", ""]),
+    [480, 1000, 1150, 1000, 940, 1000, 1807, 1807], { keyCol: true, inputCols: [5] }),
+  ...section("03", "Post-calibration record"),
+  ...table(["Finalist", "Criterion", "Scores before", "Agreed score", "Remaining difference", "Note"],
+    Array.from({ length: 5 }, () => ["", "", "", "", "", ""]), [1100, 1300, 1300, 1100, 1700, 2684]),
+  note("Unresolved cells take the panel mean, rounded to the nearest whole number with ties rounding down, and are carried into the Verdict as a risk."),
+  ...section("04", "Panel conclusions"),
+  ...kv([["Where the panel agrees", blank], ["Where the panel still differs", blank], ["Evidence that would resolve open points", blank],
+    ["Risks to name in the Verdict", blank], ["Recommendation owner", "named human decision-maker"], ["Employer decision owner", blank]], 3400),
+  ...section("05", "Completion check"),
+  ...table(["Check", "Status"], [
+    ["All flagged cells discussed", "Complete / Open"], ["Pre-calibration record retained", "Complete / Open"],
+    ["Post-calibration scores recorded", "Complete / Open"], ["Remaining disagreement stated plainly", "Complete / Open"],
+    ["No order-of-merit labels or hidden sorting used", "Complete / Open"], ["Verdict writer briefed", "Complete / Open"],
+  ], [5600, 3584], { keyCol: true, inputCols: [1] }),
+  ...useStatement(),
+]);
+
+// ================================================================ 7. Candidate notice and data record
+const noticeRecord = () => build("Calibre_Candidate_Notice_and_Data_Record.docx", "Candidate notice and data record", [
+  wordmark(), eyebrow("Candidate notice and data record"),
+  title("Use before candidate information enters the review"),
+  lede("A plain-language notice for the client to adapt, and the minimum operational facts Calibre needs to record. It does not replace the client's privacy notice or legal review."),
+  ...section("01", "Candidate notice template"),
+  ...callout("Template for the client to send", [
+    "[Client] is using Calibre by Daftar to help its hiring panel review job-related evidence for the [role] recruitment process. The service organises information already supplied through the hiring process against criteria agreed for this role. Human panelists make the assessments and [client] makes the hiring decision. Calibre does not use psychometric testing, personality profiling, culture-fit scoring, automated candidate ranking, or an automated hiring decision.",
+    "Information used may include your CV, work history, interview notes, interview scores, and job-related work samples supplied by [client]. It is shared only with authorised members of the hiring process and handled for the retention period stated by [client]. To ask about access, correction, deletion, or a reasonable adjustment, contact [client contact and method].",
+  ]),
+  ...section("02", "Notice record"),
+  ...table(["Finalist", "Notice version", "Sent date", "Method", "Client owner", "Confirmed"],
+    ["K1", "K2", "K3", "K4", "K5", "K6"].map((k) => [k, "", "", "", "", "Yes / No"]), [1000, 1500, 1500, 1600, 2084, 1500], { keyCol: true, inputCols: [5] }),
+  ...section("03", "Reasonable adjustment record"),
+  body("Record only the operational adjustment. Never record medical information, and never record the reason in the rubric, the scoring file, the calibration record or the Verdict."),
+  ...table(["Finalist", "Adjustment", "Applies to", "Owner", "Completed"],
+    Array.from({ length: 6 }, () => ["", "", "", "", "Yes / No"]), [1000, 3200, 2000, 1584, 1400], { inputCols: [4] }),
+  ...section("04", "Retention and deletion"),
+  ...kv([["Verdict issue date", blank], ["Default purge date", "90 days after issue"], ["Approved different schedule and basis", blank],
+    ["Systems and locations checked", blank], ["Deletion completed by", blank], ["Deletion completed at", blank],
+    ["Post-purge identifier", "Initials or a non-identifying finalist reference only"]], 3400),
+  ...useStatement(),
+]);
+
+Promise.all([rateCard(), intake(), memo(), serviceDefinition(), scoringGuide(), calibrationRecord(), noticeRecord()])
+  .catch((e) => { console.error(e); process.exit(1); });

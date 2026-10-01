@@ -58,6 +58,21 @@ insert into scores (role_id, rubric_version_id, panel_seat_id, finalist_id, crit
  select 'cccccccc-0000-0000-0000-000000000001','eeeeeeee-0000-0000-0000-000000000001','dddddddd-0000-0000-0000-000000000001', f.id, c.id,
         case when f.ref='F1' then 4 else 2 end, 'Interview: described the FY24 close and the elimination entries in detail without prompting.'
  from finalists f cross join criteria c where f.role_id='cccccccc-0000-0000-0000-000000000001' and c.rubric_version_id='eeeeeeee-0000-0000-0000-000000000001';
+-- invariant 2: a score's criterion, rubric version, finalist and seat must all belong to its role
+do $$ begin
+  insert into scores (role_id, rubric_version_id, panel_seat_id, finalist_id, criterion_id, value, evidence_note)
+  select 'cccccccc-0000-0000-0000-000000000001','eeeeeeee-0000-0000-0000-000000000001','dddddddd-0000-0000-0000-000000000001','ffffffff-0000-0000-0000-000000000001', c.id, 3,
+         'Interview: a criterion borrowed from another role rubric must never be accepted here.'
+  from criteria c where c.rubric_version_id='eeeeeeee-0000-0000-0000-000000000009' limit 1;
+  raise exception 'FAIL: score accepted against another rubric''s criterion';
+exception when others then if sqlerrm like 'FAIL%' or sqlerrm not like '%foreign key%' then raise; end if; raise notice 'ok: criterion from another rubric refused'; end $$;
+do $$ begin
+  insert into scores (role_id, rubric_version_id, panel_seat_id, finalist_id, criterion_id, value, evidence_note)
+  select 'cccccccc-0000-0000-0000-000000000001','eeeeeeee-0000-0000-0000-000000000009','dddddddd-0000-0000-0000-000000000001','ffffffff-0000-0000-0000-000000000001', c.id, 3,
+         'Interview: another role version 1 rubric must never stand in for this role rubric.'
+  from criteria c where c.rubric_version_id='eeeeeeee-0000-0000-0000-000000000009' limit 1;
+  raise exception 'FAIL: score accepted against another role''s rubric version';
+exception when others then if sqlerrm like 'FAIL%' or sqlerrm not like '%foreign key%' then raise; end if; raise notice 'ok: rubric version from another role refused'; end $$;
 -- immutability
 do $$ declare n int; begin update scores set value = 5 where panel_seat_id='dddddddd-0000-0000-0000-000000000001'; get diagnostics n = row_count; if n > 0 then raise exception 'FAIL: score edited (% rows)', n; end if; raise notice 'ok: score edit blocked by RLS (0 rows)';
 exception when others then if sqlerrm like 'FAIL%' then raise; end if; raise notice 'ok: score edit refused by trigger'; end $$;
@@ -77,6 +92,16 @@ do $$ declare n int; begin select count(*) into n from scores; if n <> 16 then r
 select f.ref, c.key, max(s.value)-min(s.value) as spread from scores s join finalists f on f.id=s.finalist_id join criteria c on c.id=s.criterion_id group by 1,2 having max(s.value)-min(s.value) >= 2;
 -- calibrate every cell (superuser shortcut for brevity: as lead)
 select set_config('app.uid', :'lead', false);
+-- invariant 5: the two scores behind a calibration must be for its own finalist and criterion
+do $$ declare cal uuid := gen_random_uuid(); begin
+  insert into calibrations (id, role_id, finalist_id, criterion_id, value, reason, recorded_by)
+  select cal, 'cccccccc-0000-0000-0000-000000000001', 'ffffffff-0000-0000-0000-000000000001', c.id, 3, 'Sources deliberately taken from a different criterion.', 'bbbbbbbb-0000-0000-0000-000000000002'
+  from criteria c where c.rubric_version_id='eeeeeeee-0000-0000-0000-000000000001' and c.key='a';
+  insert into calibration_sources select cal, s.id from scores s join criteria c on c.id=s.criterion_id
+   where s.finalist_id='ffffffff-0000-0000-0000-000000000001' and c.key='b';
+  set constraints all immediate;
+  raise exception 'FAIL: calibration accepted with scores from another criterion';
+exception when others then if sqlerrm like 'FAIL%' or sqlerrm not like '%same finalist and criterion%' then raise; end if; raise notice 'ok: mismatched calibration sources refused'; end $$;
 begin;
 insert into calibrations (id, role_id, finalist_id, criterion_id, value, reason, recorded_by)
  select gen_random_uuid(), 'cccccccc-0000-0000-0000-000000000001', f.id, c.id, round(avg(s.value))::int, 'Panel agreed after reading both evidence notes; the interview transcript settled it.', 'bbbbbbbb-0000-0000-0000-000000000002'

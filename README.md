@@ -8,7 +8,7 @@ Scoping, concept and product fundamentals for Calibre by Daftar, the finance rol
 
 ## Service kit
 
-[kit/](kit/README.md) holds the documents an engagement runs on: the rate card (USD 5,500, one tier), the role intake and criteria lock, the Verdict memo template, and the working file. They are generated from `kit/build/` and implement the method in `product/`.
+[kit/](kit/README.md) holds the documents an engagement runs on: the rate card (USD 5,500, one tier), the service definition, the role intake and criteria lock, the panel scoring guide, the calibration record, the candidate notice and data record, the Verdict memo template, the working file, and an internal time log. They are generated from `kit/build/` and implement the method in `product/`.
 
 ## Brand
 

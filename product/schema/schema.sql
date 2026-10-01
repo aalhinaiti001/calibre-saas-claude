@@ -80,6 +80,7 @@ create table rubric_versions (
   amendment_reason  text,                         -- null for version 1, mandatory afterwards
   created_at        timestamptz not null default now(),
   unique (role_id, version),
+  unique (id, role_id),
   check (version = 1 or (amendment_reason is not null and char_length(amendment_reason) >= 20))
 );
 
@@ -96,7 +97,8 @@ create table criteria (
   evidence_sources    text[] not null default '{}',
   questions           text[] not null default '{}',
   unique (rubric_version_id, position),
-  unique (rubric_version_id, key)
+  unique (rubric_version_id, key),
+  unique (id, rubric_version_id)
 );
 
 -- Weights must sum to 100 and count must be 4..9 for the version to be lockable.
@@ -115,7 +117,8 @@ create table panel_seats (
   is_lead           boolean not null default false,
   absent            boolean not null default false,   -- missed the deadline
   created_at        timestamptz not null default now(),
-  unique (role_id, member_id)
+  unique (role_id, member_id),
+  unique (id, role_id)
 );
 
 create table finalists (
@@ -129,7 +132,8 @@ create table finalists (
   notice_sent_at    timestamptz,
   purged_at         timestamptz,
   created_at        timestamptz not null default now(),
-  unique (role_id, ref)
+  unique (role_id, ref),
+  unique (id, role_id)
 );
 
 -- ---------------------------------------------------------------------------
@@ -148,6 +152,11 @@ create table scores (
   voided_at           timestamptz,
   void_reason         text,
   unique (rubric_version_id, panel_seat_id, finalist_id, criterion_id),
+  -- Every reference stays inside one role and one rubric version (invariant 2).
+  foreign key (rubric_version_id, role_id) references rubric_versions (id, role_id),
+  foreign key (criterion_id, rubric_version_id) references criteria (id, rubric_version_id),
+  foreign key (finalist_id, role_id) references finalists (id, role_id),
+  foreign key (panel_seat_id, role_id) references panel_seats (id, role_id),
   check (value = 0 or char_length(evidence_note) >= 40),
   check ((voided_at is null) = (void_reason is null))
 );
@@ -200,7 +209,8 @@ create table calibrations (
   resolved          boolean not null default true,   -- false = carried at panel mean, unresolved
   recorded_by       uuid not null references members(id),
   recorded_at       timestamptz not null default now(),
-  unique (role_id, finalist_id, criterion_id)
+  unique (role_id, finalist_id, criterion_id),
+  foreign key (finalist_id, role_id) references finalists (id, role_id)
 );
 
 create table calibration_sources (
@@ -211,8 +221,10 @@ create table calibration_sources (
 
 create or replace function calibration_needs_two_scores() returns trigger language plpgsql as $$
 begin
-  if (select count(*) from calibration_sources where calibration_id = new.id) < 2 then
-    raise exception 'a calibration must reference at least two scores';
+  if (select count(*) from calibration_sources cs join scores s on s.id = cs.score_id
+      where cs.calibration_id = new.id and s.role_id = new.role_id
+        and s.finalist_id = new.finalist_id and s.criterion_id = new.criterion_id) < 2 then
+    raise exception 'a calibration must reference at least two scores for the same finalist and criterion';
   end if;
   return new;
 end $$;

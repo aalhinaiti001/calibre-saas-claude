@@ -44,10 +44,10 @@ calibrated ──memo issued──▶ issued ──365 day outcome or manual clo
 These hold in every state and are enforced in the database, not only in the interface.
 
 1. A finalist cannot exist for a role in draft state.
-2. A score cannot reference a rubric version other than the role's current version at the time of submission.
+2. A score cannot reference a rubric version other than the role's current version at the time of submission. Its rubric version, finalist and panel seat belong to its role, and its criterion belongs to its rubric version.
 3. A submitted score is never updated or deleted. Voiding is a new event that marks it void and keeps it.
 4. No member can read another panel seat's scores for a role until that role is in revealed state or later.
-5. A calibration must reference at least two scores for the same finalist and criterion, and must carry a reason of at least one sentence.
+5. A calibration must reference at least two scores for its own role, finalist and criterion, and must carry a reason of at least one sentence.
 6. A verdict cannot be issued while any criterion has weight zero, while weights do not sum to 100, or while the recommendation field is empty.
 7. If the recommended finalist is not the finalist with the highest weighted result, the departure reason is mandatory and non empty.
 8. A role holds at most six finalists and at most five panel seats.
