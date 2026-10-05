@@ -135,7 +135,7 @@ const rateCard = () => build("Calibre_Rate_Card.docx", "Private rate card", [
   title("The Calibre Verdict"),
   lede("For a finance hire where the shortlist is defined and the panel needs one written, inspectable basis for its decision."),
   ...kv([
-    ["Fee", "USD 5,500 fixed"],
+    ["Fee", "USD 6,000 fixed"],
     ["Role", "One finance role"],
     ["Finalists", "Up to four included. A fifth or sixth is quoted before start."],
     ["Panel", "Two to five of your decision-makers"],
@@ -369,7 +369,7 @@ const serviceDefinition = () => build("Calibre_Service_Definition.docx", "Servic
   ...section("01", "Service boundary"),
   ...kv([["Role", "One finance role"], ["Finalists", "Two to six. Four are included in the fee; a fifth or sixth is quoted before start."],
     ["Panel", "Two to five decision-makers, one of them the hiring lead"], ["Criteria", "Four to nine, weighted to 100"],
-    ["Fee", "USD 5,500 fixed. 50% on criteria lock, 50% on delivery of the written Verdict."],
+    ["Fee", "USD 6,000 fixed. 50% on criteria lock, 50% on delivery of the written Verdict."],
     ["Output", "One written Calibre Verdict"], ["Decision owner", "The employer"]]),
   sub("Included"),
   ...bullets([
@@ -416,7 +416,7 @@ const serviceDefinition = () => build("Calibre_Service_Definition.docx", "Servic
   ...section("05", "Commercial discipline"),
   ...kv([
     ["Offer", "Sell one complete Verdict. Calibration is not an optional add-on."],
-    ["Commercial terms", "USD 5,500 fixed; 50% on criteria lock, 50% on delivery. Currency and confidentiality terms are confirmed in the signed engagement letter."],
+    ["Commercial terms", "USD 6,000 fixed; 50% on criteria lock, 50% on delivery. Currency and confidentiality terms are confirmed in the signed engagement letter."],
     ["Scope change", "Additional finalists, a second role, or a rubric change after lock is a written variation."],
     ["Claims", "Do not promise that disagreement will be resolved, that bias is eliminated, or that the method predicts performance."],
     ["Decision", "Name the human recommendation owner, and repeat that the employer decides."],

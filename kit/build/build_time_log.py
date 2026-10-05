@@ -114,7 +114,7 @@ ws = sheet("Assumptions", "Assumptions",
 head(ws, 5, ["Input", "Value", "Basis"])
 inputs = [
     ("Founder hour hurdle (USD)", 350, USD, "All-in opportunity cost per founder hour (D/01 benchmark)."),
-    ("Calibre Verdict fee (USD)", 5500, USD, "Rate card, founder decision 30 Sep 2026. Not a market benchmark."),
+    ("Calibre Verdict fee (USD)", 6000, USD, "Rate card, founder decision 5 Oct 2026. Rationale in product/PRICING.md."),
     ("Management hour cap (all-in)", None, HRS, "Not set. A founder decision; leave blank until made."),
 ]
 for r, (label, value, fmt, basis) in enumerate(inputs, 6):

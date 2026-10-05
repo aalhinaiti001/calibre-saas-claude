@@ -4,7 +4,7 @@ The documents a Calibre Verdict engagement runs on. One product, one tier: the C
 
 | File | Use |
 |---|---|
-| [Calibre_Rate_Card.docx](Calibre_Rate_Card.docx) | The private rate card. USD 5,500 fixed, 50% on criteria lock, 50% on delivery of the written Verdict. |
+| [Calibre_Rate_Card.docx](Calibre_Rate_Card.docx) | The private rate card. USD 6,000 fixed, 50% on criteria lock, 50% on delivery of the written Verdict. |
 | [Calibre_Role_Intake_and_Criteria_Lock.docx](Calibre_Role_Intake_and_Criteria_Lock.docx) | Completed on the intake call. Role brief, panel, criteria, evidence, the signed lock, the shortlist register, candidate notice and use-policy acceptance. |
 | [Calibre_Verdict_Memo_Template.docx](Calibre_Verdict_Memo_Template.docx) | The Verdict, in METHOD.md §7's ten sections. |
 | [Calibre_Verdict_Working_File.xlsx](Calibre_Verdict_Working_File.xlsx) | One workbook per engagement: setup, rubric, blind panel scores, divergence, calibration, results, outcome register. |
@@ -39,8 +39,8 @@ The five service-delivery files in `latest-research/.../06_Calibre (by Daftar)/0
 | Use statement missing from rate cards and memo | All four sentences on every document |
 | Three `[VERIFY]` flags per rate card | Closed: payment 50/50, invoiced in USD with SAR or AED on request, data handling per GUARDRAILS.md §5 |
 | Comparison sheet read unscored cells as "No evidence" | Every derived cell is blank until something is entered; checked in the verification below |
-| Companion documents stated four to seven criteria | Service Definition, Panel Scoring Guide, Calibration Record and Candidate Notice rebuilt here: four to nine criteria, USD 5,500, 50/50, Calibre brand |
-| Two time logs, a solo log and a panel log, each with its own fee and hour cap | One log for the one product, at USD 5,500; the management hour cap is left blank until the founder sets one |
+| Companion documents stated four to seven criteria | Service Definition, Panel Scoring Guide, Calibration Record and Candidate Notice rebuilt here: four to nine criteria, USD 6,000, 50/50, Calibre brand |
+| Two time logs, a solo log and a panel log, each with its own fee and hour cap | One log for the one product, at USD 6,000; the management hour cap is left blank until the founder sets one |
 
 Kept from the old kit because they were the strongest parts: the nine anchor definitions, the evidence-basis labels (Documented, Interview-stated, Inferred, None), the intake stop rule, the memo's standing limits paragraph, "What this Verdict cannot tell you", and fixed candidate order.
 
