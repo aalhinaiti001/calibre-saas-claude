@@ -68,5 +68,5 @@ Recalculate both workbooks in LibreOffice or Excel after building, so cached val
 
 ## Open
 
-1. **The budget already fails the hurdle.** The time log carries the earlier panel budgets: 15.75 all-in hours against the 15.71 the fee buys at USD 350, before any selling or admin time, and with no budget for the live readout (the solo log carried an hour for it). Decide which of three moves to make: a tighter scope, a higher fee, or a management hour cap the delivery has to meet. Log actual hours from the first Verdict either way.
+1. **The hour headroom is thin.** At USD 6,000 the fee buys 17.14 all-in hours at the USD 350 hurdle; the time log's budget is 15.75, leaving 1.39 hours for the live readout (budgeted at zero; the solo log carried an hour) and all selling and admin. Budgeting the readout, a selling and admin line, and a 17.14-hour cap are open in [`product/PRICING.md`](../product/PRICING.md).
 2. **Superseded copies, outside this repo.** The five old kit files, the four companion documents, CAL/01 and the two old rate cards remain unmarked in `latest-research`. Held until that archive's open pull request is cleaned up; the founder decides when to mark them.

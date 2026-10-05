@@ -11,6 +11,7 @@ This directory is the product's foundation. Everything here is true whether Cali
 | [templates/finance-manager.rubric.json](templates/finance-manager.rubric.json) | The Finance Manager role pack. |
 | [templates/verdict-memo.md](templates/verdict-memo.md) | The memo template, section by section. |
 | [schema/schema.sql](schema/schema.sql) | The Postgres data model with row level security, immutability rules, audit log, and retention. |
+| [PRICING.md](PRICING.md) | The fee (USD 6,000), why it is set there, how to present it, the evidence limits, and the rules that decide the next change. |
 | [DECISIONS.md](DECISIONS.md) | Architecture decision records and the founder decision log. |
 
 Read METHOD.md first. The rest implements it.
