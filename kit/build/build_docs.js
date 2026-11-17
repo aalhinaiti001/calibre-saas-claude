@@ -33,7 +33,7 @@ const run = (text, o = {}) => new TextRun({ text, font: o.font || SANS, size: o.
 const para = (children, o = {}) => new Paragraph({
   children: Array.isArray(children) ? children : [typeof children === "string" ? run(children, o) : children],
   spacing: { before: o.before ?? 0, after: o.after ?? 120, line: o.line ?? 300, lineRule: LineRuleType.AUTO },
-  alignment: o.align, border: o.border, shading: o.shading, indent: o.indent, keepNext: o.keepNext,
+  alignment: o.align, border: o.border, shading: o.shading, indent: o.indent, keepNext: o.keepNext, keepLines: o.keepLines,
   heading: o.heading, numbering: o.numbering,
 });
 
@@ -71,7 +71,8 @@ const callout = (tag, lines, o = {}) => {
   if (tag) out.push(para(run(tag, { size: 15, bold: true, color: o.rule || C.forest600, caps: true, spacing: 30 }),
     { border, shading, indent: { left: 200, right: 120 }, before: 160, after: 0, line: 280, keepNext: true }));
   lines.forEach((l, i) => out.push(para(typeof l === "string" ? run(l, { color: C.forest900 }) : l,
-    { border, shading, indent: { left: 200, right: 120 }, before: tag || i ? 0 : 160, after: i === lines.length - 1 ? 200 : 60, line: 290 })));
+    { border, shading, indent: { left: 200, right: 120 }, before: tag || i ? 0 : 160, after: i === lines.length - 1 ? 200 : 60, line: 290,
+      keepLines: true, keepNext: i < lines.length - 1 })));
   return out;
 };
 const useStatement = () => callout("Use statement", [USE_STATEMENT], { fill: C.forest100 });
@@ -85,14 +86,16 @@ const cell = (content, width, o = {}) => new TableCell({
   borders: { top: NONE, left: NONE, right: NONE,
     bottom: o.head ? { style: BorderStyle.SINGLE, size: 12, color: C.forest600 } : { style: BorderStyle.SINGLE, size: 4, color: C.forest100 } },
   children: (Array.isArray(content) ? content : [content]).map((c) =>
-    c instanceof Paragraph ? c : para(run(String(c ?? ""), o.run || {}), { after: 0, line: 264 })),
+    c instanceof Paragraph ? c : para(run(String(c ?? ""), o.run || {}), { after: 0, line: 264, keepNext: o.keepNext })),
 });
 
 const table = (headers, rows, widths, o = {}) => {
   const total = widths.reduce((a, b) => a + b, 0);
   const head = headers ? [new TableRow({ tableHeader: true, cantSplit: true, children: headers.map((h, i) =>
-    cell(h, widths[i], { head: true, fill: C.forest50, run: { bold: true, size: 15, color: C.forest900, caps: true, spacing: 10 } })) })] : [];
-  const rs = rows.map((r) => new TableRow({ cantSplit: true, children: r.map((v, i) => cell(v, widths[i], {
+    cell(h, widths[i], { head: true, fill: C.forest50, keepNext: o.keep, run: { bold: true, size: 15, color: C.forest900, caps: true, spacing: 10 } })) })] : [];
+  // o.keep holds a short table on one page: every row but the last keeps with the next.
+  const rs = rows.map((r, ri) => new TableRow({ cantSplit: true, children: r.map((v, i) => cell(v, widths[i], {
+    keepNext: o.keep && ri < rows.length - 1,
     run: i === 0 && o.keyCol ? { bold: true, color: C.forest700 } : o.inputCols?.includes(i) ? { color: C.stone500 } : {} })) }));
   return [new Table({ width: { size: total, type: WidthType.DXA }, columnWidths: widths,
     borders: { top: NONE, bottom: NONE, left: NONE, right: NONE, insideHorizontal: NONE, insideVertical: NONE },
@@ -519,5 +522,89 @@ const noticeRecord = () => build("Calibre_Candidate_Notice_and_Data_Record.docx"
   ...useStatement(),
 ]);
 
-Promise.all([rateCard(), intake(), memo(), serviceDefinition(), scoringGuide(), calibrationRecord(), noticeRecord()])
+// Internal. Mirrors product/PRICING.md; the evidence is docs/research/calibre-verdict-fee-evidence.md.
+const pricingRationale = () => build("Calibre_Pricing_Rationale.docx", "Pricing rationale · internal", [
+  wordmark(), eyebrow("Internal · Pricing rationale · Not for clients"),
+  title("USD 6,000, and why"),
+  lede("The fee, why it is set where it is, how to present it, where the evidence is thin, and the rules that decide the next change. Founder decision, 5 October 2026."),
+  ...section("01", "The fee"),
+  ...kv([
+    ["Product", "The Calibre Verdict, one tier, panel calibration included (DEC-2026-02)"],
+    ["Fee", "USD 6,000 fixed. AED 22,035 at 3.6725; SAR 22,500 at 3.75."],
+    ["Includes", "One finance role, up to four finalists, a panel of two to five, four to nine criteria, one 75-minute calibration, the written Verdict and readout, outcome follow-up at 90, 180 and 365 days."],
+    ["Payment", "50% on criteria lock, 50% on delivery of the written Verdict."],
+    ["Currency", "Invoiced in USD; SAR or AED equivalents on request. UAE tax invoices also show AED and the rate used. VAT is added where it applies."],
+    ["Valid for", "60 days from issue."],
+    ["History", "USD 4,500 solo and USD 6,500 panel at launch; USD 5,500 single tier on 30 Sep 2026; USD 6,000 on 5 Oct 2026."],
+  ]),
+  ...section("02", "Why USD 6,000"),
+  sub("1. The lowest round number that clears the hurdle on budget"),
+  body("The internal hurdle is USD 350 per all-in founder hour (D/01). The delivery budget in the engagement time log is 15.75 hours.", { keepNext: true }),
+  ...table(["Fee", "Hours bought at USD 350", "Rate on 15.75 h budget", "Headroom"],
+    [["USD 5,500", "15.71", "USD 349", "−0.04 h, fails"], ["USD 6,000", "17.14", "USD 381", "+1.39 h"], ["USD 6,500", "18.57", "USD 413", "+2.82 h"]],
+    [2000, 2600, 2600, 1984], { keyCol: true }),
+  sub("2. Against what the buyer already spends, it is modest"),
+  body("For a UAE mid-market finance hire, recruiters quote about 20% contingency or 30% retained. These are recruiter-stated ranges, not measured averages. On Michael Page's 2026 UAE SME pay averages, the fee is:", { keepNext: true }),
+  ...table(["Role", "Annual fixed pay", "Fee ÷ pay", "Fee ÷ 20% contingency", "Fee ÷ 30% retained"],
+    [["Finance Manager", "USD 98,026", "6.1%", "31%", "20%"], ["Financial Controller", "USD 130,701", "4.6%", "23%", "15%"],
+     ["Finance Director", "USD 212,389", "2.8%", "14%", "9%"], ["CFO", "USD 245,065", "2.4%", "12%", "8%"]],
+    [2300, 1900, 1400, 1900, 1684], { keyCol: true }),
+  note("The ratios are conservative: published GCC search terms charge on total remuneration including bonus and car, which the salary guides exclude."),
+  sub("3. Against alternative services, it sits where its scope belongs"),
+  body("It is USD 1,500 per included finalist. A UK council pays about USD 1,005 per candidate for a psychologist's read of leadership psychometrics. US and UK boutique fixed-fee hiring advice runs from about USD 1,400 (an HR adviser on the panel) to USD 3,350–12,000 (interview design projects). No GCC firm publishes a per-role hiring advisory fee."),
+  sub("4. A modest project to the buyer, a senior hourly rate to the founder"),
+  body("USD 350 an hour (USD 2,800 a day) is at the top of published UAE interim CFO and senior independent rates, above the UK interim CFO 90th percentile, and far below Big 4 partner rates. In absolute terms USD 6,000 sits just under the published floor of UAE and KSA advisory project fees (AED 25,000; SAR 25,000)."),
+  sub("5. Why not USD 6,500 now"),
+  body("The kill criterion (three paid Verdicts in twelve months) makes the first sales worth more than USD 500 of margin, and no Calibre data yet shows the price can carry more. USD 6,500 is the tested next step, under the rules in section 07."),
+  ...section("03", "What the fee does not rest on"),
+  ...bullets([
+    "The cost of a wrong hire. Calibre does not predict performance, so it cannot claim to avert any share of that cost. \"The fee pays for itself if it prevents one mis-hire\" is a validity claim by the back door and is never used.",
+    "Folk statistics. \"30% of first-year salary (US Department of Labor)\" has no traceable source. \"3x salary\" comes from one constructed scenario. Neither appears in any Calibre material.",
+    "One sourced, market-specific point may be used. A hire ended at a UAE probation review (up to six months) usually falls outside a recruiter's 12-week or three-month replacement guarantee, so the employer pays a second search fee: about USD 19,600 for a UAE SME Finance Manager at 20%.",
+  ]),
+  ...section("04", "How to present it"),
+  body("Lead with the search fee for the same hire, in the buyer's currency, with the source and its limit:", { keepNext: true }),
+  ...callout("Suggested wording", ["For a finance hire on Michael Page's 2026 UAE SME pay averages, recruiters quote about 20% contingency or 30% retained: roughly USD 19,600 for a Finance Manager to USD 73,500 for a CFO. The Calibre Verdict is a fixed USD 6,000 (AED 22,035), paid half at criteria lock and half on the written Verdict."]),
+  body("Then the staging: 50/50 resembles the thirds buyers already accept from search firms. Do not quote the USD 350 hourly benchmark to clients; GCC buyers distrust hourly billing for defined work."),
+  ...section("05", "Limits of the evidence"),
+  ...bullets([
+    "Every GCC fee percentage comes from recruiters' own terms or blogs. No independent survey of GCC search fees exists; a \"12.5% CIPD median\" on recruiter blogs could not be traced. If real mid-market fees sit nearer 12–15%, the Finance Manager ratio rises to about 40–50%.",
+    "No GCC seller publishes a comparable product. The nearest priced comparators are UK and US.",
+    "No salary guide has a family-business cut, and no reliable Jordan salary or fee data exists.",
+    "GCC buyer surveys describe large enterprises (94% above USD 500m revenue), not the mid-market.",
+  ]),
+  ...section("06", "Risks"),
+  ...kv([
+    ["Jordan", "USD 6,000 is roughly 11–16% of a Jordanian Finance Manager's annual pay, on weak data. Sell in Jordan to employers paying GCC-level pay or buying for a regional group; set no Jordan price until a real Jordan objection is logged."],
+    ["Regressive across roles", "The fee weighs about two and a half times as heavily on a Finance Manager hire as on a CFO hire. Expect any resistance at the Finance Manager end."],
+    ["The first three sales", "Buyers are likely to test the number. A discount given to win one becomes the reference price and fails the hurdle on every Verdict after it. Concede on terms, not on the fee."],
+    ["Thin hour headroom", "With the readout at the 1.0 hour the earlier log carried, headroom falls to 0.39 hours; one hour of selling and admin takes the rate to about USD 338, below the hurdle."],
+  ]),
+  ...section("07", "Open decisions and the rules for the next change"),
+  ...table(["#", "Open for founder decision"], [
+    ["1", "Budget the live readout at 1.0 hour in the time log (it is at zero)."],
+    ["2", "Add an explicit selling and admin budget."],
+    ["3", "Set 17.14 all-in hours as the management hour cap."],
+    ["4", "Quote a round AED 22,000 rather than the converted AED 22,035."],
+    ["5", "Price a fifth or sixth finalist from logged marginal hours at USD 350, not from the USD 1,500 average."],
+  ], [600, CONTENT - 600], { keyCol: true, keep: true }),
+  body("Log on each of the first three Verdicts: all-in hours by step, selling and admin hours, panel size and criteria count, the hire's package and any recruiter fee, every price objection verbatim, proposals won and lost with the reason, currency requested and days to pay, and delivery days from lock. Then apply these rules, set now:", { keepNext: true }),
+  ...kv([
+    ["Mean hours above 17.14", "Raise the fee or narrow the scope before the fourth sale, whatever the win rate."],
+    ["Hours on budget, no price objection", "From a qualified UAE prospect: test USD 6,500 on the next proposals."],
+    ["Two or more declines citing price", "From qualified prospects: review positioning before the number."],
+  ], 3000),
+  ...section("08", "Principal sources"),
+  ...bullets([
+    "Salaries: Michael Page UAE Salary Guide 2026 (SME column); Michael Page Saudi Arabia Salary Guide 2026.",
+    "Search fees: Robert Walters GCC retained terms (2024); Huxley UAE retained terms; recruiter fee guides (HRnow 2025, ReapHR 2026, Mystic Sourcing 2026).",
+    "Selection services: North Tyneside Council committee reports (June 2025, March 2026); bfpeople; Hire Ground HR; StackBuilders; Miracle Recruiting.",
+    "Advisory rates: FD Capital; Omnispay (2026); Holdsway interim CFO survey (May 2026); CFO Centre (2026); Talent Arabia.",
+    "Labour law: UAE Federal Decree-Law 33 of 2021, Articles 9 and 51.",
+  ]),
+  note("Full citations, dates, links and the researchers' source notes: docs/research/calibre-verdict-fee-evidence.md in the Calibre repository."),
+  ...useStatement(),
+]);
+
+Promise.all([rateCard(), intake(), memo(), serviceDefinition(), scoringGuide(), calibrationRecord(), noticeRecord(), pricingRationale()])
   .catch((e) => { console.error(e); process.exit(1); });

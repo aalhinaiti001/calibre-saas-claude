@@ -1,6 +1,6 @@
 # Pricing
 
-Version 1.0, 5 October 2026. Internal. The fee, why it is set where it is, how to present it, and what decides the next change. The evidence behind every market figure here is in [`docs/research/calibre-verdict-fee-evidence.md`](../docs/research/calibre-verdict-fee-evidence.md), with the researchers' source notes alongside it.
+Version 1.0, 5 October 2026. Internal. The fee, why it is set where it is, how to present it, and what decides the next change. The evidence behind every market figure here is in [`docs/research/calibre-verdict-fee-evidence.md`](../docs/research/calibre-verdict-fee-evidence.md), with the researchers' source notes alongside it. A Word edition is generated as [`kit/Calibre_Pricing_Rationale.docx`](../kit/Calibre_Pricing_Rationale.docx).
 
 ## The fee
 

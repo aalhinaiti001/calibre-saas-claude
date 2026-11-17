@@ -13,6 +13,7 @@ The documents a Calibre Verdict engagement runs on. One product, one tier: the C
 | [Calibre_Calibration_Record.docx](Calibre_Calibration_Record.docx) | Kept during the calibration session: flagged cells, cause, resolution, scores after calibration, completion check. |
 | [Calibre_Candidate_Notice_and_Data_Record.docx](Calibre_Candidate_Notice_and_Data_Record.docx) | The notice template the client sends each finalist, the notice and adjustment records, and the purge record. |
 | [Calibre_Engagement_Time_Log.xlsx](Calibre_Engagement_Time_Log.xlsx) | **Internal, never sent to a client.** All-in founder hours against budget, the fee tested against the USD 350 hurdle, and the engagement register. |
+| [Calibre_Pricing_Rationale.docx](Calibre_Pricing_Rationale.docx) | **Internal, never sent to a client.** Why the fee is USD 6,000: the hurdle arithmetic, the market comparison, how to present it, risks, open decisions. The Word edition of [`product/PRICING.md`](../product/PRICING.md). |
 
 Set in Lora and Plus Jakarta Sans, both free under the SIL Open Font License. Install them on any machine that opens these files, or Word and Excel substitute another face.
 
@@ -46,18 +47,18 @@ Kept from the old kit because they were the strongest parts: the nine anchor def
 
 ## Verification
 
-- All seven Word files pass the Office Open XML schema validation, and each was rendered and checked page by page.
+- All eight Word files pass the Office Open XML schema validation, and each was rendered and checked page by page.
 - The working file has 1,208 formulas and recalculates with zero errors. Two filled test scenarios, checked against hand-computed answers, passed 55 of 55: flags, zero exclusion, ties rounding down, calibrated and unresolved finals, reason-missing and misplaced-entry checks, reviewer agreement, weighted results for nine and seven criteria, and the rubric lock messages.
 - The time log has 75 formulas and recalculates with zero errors. The blank template and two filled scenarios passed 48 of 48: budget and actual totals, blanks until entered, effective rate, hurdle headroom, the cap left blank and set, the hurdle test at budget and at actual, and the register's per-engagement and blended rates.
 - Claim gate (brand handbook §04): every hit for rank, fit, predict, valid and assessment is a negation, a prohibition, the use statement, the scoring guide's labelled example of an insufficient note, or "assessment" in its tax sense. No Daftar face or colour appears in any file.
 
 ## Rebuilding
 
-The nine files are generated. Edit the builders, not the outputs.
+The ten files are generated. Edit the builders, not the outputs.
 
 ```bash
 cd kit/build && npm install
-node build_docs.js ..                     # the seven Word documents
+node build_docs.js ..                     # the eight Word documents
 python3 build_working_file.py             # the working file
 python3 build_time_log.py                 # the time log
 ```
